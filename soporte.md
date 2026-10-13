@@ -1,6 +1,6 @@
-# Soporte · Gridiron Legacy
+# Soporte · Pixel Football
 
-Gridiron Legacy es un juego de carrera de quarterback: cada down tuyo se juega,
+Pixel Football es un juego de carrera de quarterback: cada down tuyo se juega,
 el pase es una resortera, el sack es físico, y fuera del campo hay contratos,
 draft, mercado y una casa que pagar. Equipos y jugadores ficticios.
 

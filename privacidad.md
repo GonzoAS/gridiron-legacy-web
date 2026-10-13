@@ -1,8 +1,8 @@
-# Política de privacidad · Gridiron Legacy
+# Política de privacidad · Pixel Football
 
 _Última actualización: 3 de octubre de 2026._
 
-Gridiron Legacy es un juego de carrera de quarterback para iPhone y Android
+Pixel Football es un juego de carrera de quarterback para iPhone y Android
 hecho por Gonzalo Álvarez. Esta página explica, en corto y sin letra chica, qué
 hace el juego con tus datos. La respuesta larga es: casi nada.
 
