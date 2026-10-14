@@ -1,0 +1,23 @@
+/* Paleta del kit de UI del juego (GridironUi) y su fuente, Chakra Petch. */
+@font-face{font-family:"Chakra";src:url("ChakraPetch-Medium.ttf");font-weight:500;font-display:swap}
+@font-face{font-family:"Chakra";src:url("ChakraPetch-Bold.ttf");font-weight:700;font-display:swap}
+:root{--bg:#141B30;--panel:#182036;--edge:#2A3550;--oro:#E8B23A;--texto:#F2ECDC;--dim:#8F99B3;--led:#F8F0D8;--pasto:#2C6E3F}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg)}
+body{font-family:"Chakra",system-ui,sans-serif;font-weight:500;color:var(--texto);background:var(--bg);line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+h1,h2,h3,.rotulo{font-weight:700;text-transform:uppercase;letter-spacing:.02em;line-height:1.1}
+.oro{color:var(--oro)}
+.dim{color:var(--dim)}
+/* El letrero de LEDs del splash: marcador con tornillos. */
+.marcador{position:relative;display:inline-block;padding:18px 34px;background:#0b0f1c;border:4px solid var(--edge);border-radius:6px;box-shadow:0 0 0 3px #0b0f1c,0 12px 40px rgba(0,0,0,.6)}
+.marcador::before,.marcador::after{content:"";position:absolute;top:8px;width:8px;height:8px;border-radius:50%;background:var(--edge)}
+.marcador::before{left:8px}.marcador::after{right:8px}
+.leds{font-weight:700;text-transform:uppercase;color:var(--led);letter-spacing:.12em;line-height:1;text-shadow:0 0 6px rgba(248,240,216,.7),0 0 18px rgba(232,178,58,.45)}
+.leds .l2{display:block;color:var(--oro);text-shadow:0 0 6px rgba(232,178,58,.8),0 0 18px rgba(232,178,58,.45)}
+.boton{display:flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:14px 26px;border-radius:8px;font-weight:700;text-transform:uppercase;text-decoration:none;letter-spacing:.04em;transition:transform .12s ease,box-shadow .12s ease,background .12s ease}
+.boton:active{transform:translateY(2px)}
+.boton.primario{background:var(--oro);color:#1a1405;box-shadow:0 4px 0 #9c7520,0 10px 30px rgba(232,178,58,.25)}
+.boton.primario:hover{box-shadow:0 4px 0 #9c7520,0 10px 40px rgba(232,178,58,.45)}
+.boton.secundario{background:var(--panel);color:var(--texto);border:2px solid var(--edge);box-shadow:0 4px 0 #0b0f1c}
+.boton.secundario:hover{border-color:var(--oro)}
