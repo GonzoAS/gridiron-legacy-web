@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Pixel Football · A quarterback's career</title>
+<meta name="description" content="Live a quarterback's whole career, from college to the Hall of Fame. You play every down. Pixel art for iPhone.">
+<meta name="apple-itunes-app" content="app-id=6816288775">
+<meta property="og:title" content="Pixel Football · A quarterback's career">
+<meta property="og:description" content="You play every down. From college to the Hall of Fame. Free on the App Store.">
+<meta property="og:image" content="https://gonzoas.github.io/gridiron-legacy-web/assets/en/og.jpg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#141B30">
+<link rel="icon" href="../assets/icono.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="preload" href="../assets/ChakraPetch-Bold.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="alternate" hreflang="en" href="https://gonzoas.github.io/gridiron-legacy-web/">
+<link rel="alternate" hreflang="en" href="https://gonzoas.github.io/gridiron-legacy-web/en/">
+<link rel="alternate" hreflang="x-default" href="https://gonzoas.github.io/gridiron-legacy-web/">
+<link rel="stylesheet" href="../assets/estilo.css">
+<style>
+body{overflow-x:hidden}
+.pixel{image-rendering:pixelated;image-rendering:crisp-edges}
+
+/* LA CINTA DEL MARCADOR: corre arriba como la de una transmisión. */
+.cinta{position:fixed;top:0;left:0;right:0;z-index:20;height:38px;overflow:hidden;background:#0b0f1c;border-bottom:2px solid var(--oro);display:flex;align-items:center}
+.cinta .corre{display:flex;gap:48px;white-space:nowrap;animation:corre 32s linear infinite;padding-left:48px;font-weight:700;text-transform:uppercase;font-size:14px;letter-spacing:.08em}
+.cinta .corre span::before{content:"●";color:var(--oro);margin-right:14px;font-size:10px;vertical-align:2px}
+@keyframes corre{to{transform:translateX(-50%)}}
+
+/* EL HÉROE: el partido de fondo, el letrero de LEDs y el QB. */
+.heroe{position:relative;min-height:100svh;display:grid;place-items:center;padding:88px 16px 56px;overflow:hidden;isolation:isolate}
+.heroe video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;filter:saturate(1.1)}
+.heroe::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at 50% 40%,rgba(20,27,48,.2),rgba(20,27,48,.8) 75%),linear-gradient(180deg,rgba(20,27,48,.2),var(--bg) 96%)}
+.heroe .dentro{display:grid;grid-template-columns:auto auto;align-items:center;gap:clamp(16px,4vw,56px);max-width:1100px}
+.heroe .marcador{padding:22px 40px}
+.matriz{position:relative}
+.matriz::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle,transparent 55%,#0b0f1c 62%) 0 0/5px 5px;opacity:.55}
+.heroe .leds{font-size:clamp(46px,8.5vw,104px);animation:enciende 1.6s steps(6) both}
+@keyframes enciende{0%{opacity:0;filter:brightness(3)}60%{opacity:1}100%{opacity:1;filter:none}}
+.heroe .lema{margin-top:26px;font-size:clamp(22px,3.6vw,36px)}
+.heroe p{max-width:540px;margin-top:12px;font-size:clamp(16px,2.2vw,19px);color:var(--texto)}
+.ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+.ctas .boton{font-size:18px;flex:1 1 220px}
+.heroe small{display:block;margin-top:12px;color:var(--dim);font-size:14px}
+.qb{width:clamp(220px,32vw,420px);filter:drop-shadow(0 18px 24px rgba(0,0,0,.6));animation:flota 2.4s ease-in-out infinite}
+@keyframes flota{50%{transform:translateY(-12px)}}
+.flecha{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);color:var(--oro);font-size:26px;animation:flota 1.6s ease-in-out infinite;text-decoration:none}
+
+.seccion{max-width:1140px;margin:0 auto;padding:clamp(64px,10vw,110px) 16px}
+.titulo{font-size:clamp(30px,5.4vw,56px);text-align:center}
+.titulo span{display:block;color:var(--oro)}
+.sub{text-align:center;color:var(--dim);max-width:620px;margin:14px auto 0;font-size:18px}
+.etiqueta{display:inline-block;background:var(--oro);color:#1a1405;font-weight:700;text-transform:uppercase;font-size:13px;letter-spacing:.08em;padding:4px 10px;border-radius:4px}
+
+/* EL PARTIDO EN UN TELÉFONO DE LADO. */
+.telefono{position:relative;margin:44px auto 0;max-width:900px;aspect-ratio:1072/796;border-radius:34px;padding:14px;background:#05070d;border:3px solid var(--edge);box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 0 1px #000,0 0 60px rgba(232,178,58,.12)}
+.telefono video{width:100%;height:100%;object-fit:cover;border-radius:22px;display:block;background:#000}
+.telefono .vivo{position:absolute;top:28px;left:28px;background:#d23b3b;color:#fff;font-weight:700;font-size:12px;letter-spacing:.1em;padding:4px 10px;border-radius:4px}
+.telefono .vivo::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:#fff;margin-right:7px;vertical-align:1px;animation:late 1s steps(2) infinite}
+@keyframes late{50%{opacity:0}}
+
+/* LA ESCALERA DE LA CARRERA. */
+.escalera{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:44px;counter-reset:paso}
+.escalon{position:relative;background:var(--panel);border:2px solid var(--edge);border-radius:12px;overflow:hidden;transition:transform .2s,border-color .2s}
+.escalon:hover{transform:translateY(-6px);border-color:var(--oro)}
+.escalon img{display:block;width:100%;aspect-ratio:1080/1350;object-fit:cover}
+.escalon b{position:absolute;top:10px;left:10px;counter-increment:paso;background:#0b0f1ccc;border:2px solid var(--oro);color:var(--oro);font-size:14px;padding:2px 9px;border-radius:4px;text-transform:uppercase}
+.escalon:last-child{border-color:var(--oro);box-shadow:0 0 40px rgba(232,178,58,.25)}
+
+/* LAS JUGADAS: los posts como un libro que se desliza. */
+.carril{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px max(16px,calc((100vw - 1140px)/2 + 16px)) 26px;margin-top:40px;scrollbar-width:thin;scrollbar-color:var(--oro) transparent}
+.carril figure{flex:0 0 auto;width:min(78vw,380px);scroll-snap-align:center;border-radius:14px;overflow:hidden;border:2px solid var(--edge);background:var(--panel);transition:transform .2s}
+.carril figure:hover{transform:scale(1.02)}
+.carril img{display:block;width:100%;aspect-ratio:1080/1350;object-fit:cover}
+.mueve{display:flex;justify-content:center;gap:12px;margin-top:6px}
+.mueve button{width:52px;height:52px;border-radius:50%;border:2px solid var(--edge);background:var(--panel);color:var(--oro);font:700 22px "Chakra",sans-serif;cursor:pointer}
+.mueve button:hover{border-color:var(--oro)}
+
+.rasgos{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:44px}
+.rasgo{background:linear-gradient(180deg,var(--panel),#141b30);border:2px solid var(--edge);border-radius:12px;padding:24px;transition:border-color .2s}
+.rasgo:hover{border-color:var(--oro)}
+.rasgo .num{font-weight:700;color:var(--oro);font-size:34px;line-height:1}
+.rasgo h3{font-size:19px;margin:10px 0 6px}
+.rasgo p{color:var(--dim)}
+
+/* LOS ANILLOS. */
+.vitrina{background:radial-gradient(ellipse at 50% 30%,#1f2a4a,#0b0f1c 70%);border-top:2px solid var(--edge);border-bottom:2px solid var(--edge)}
+.anillos{display:flex;justify-content:center;flex-wrap:wrap;gap:clamp(10px,3vw,34px);margin-top:44px}
+.anillos img{width:clamp(110px,18vw,190px);animation:flota 3s ease-in-out infinite;filter:drop-shadow(0 14px 22px rgba(0,0,0,.55))}
+.anillos img:nth-child(2){animation-delay:-.75s}.anillos img:nth-child(3){animation-delay:-1.5s}.anillos img:nth-child(4){animation-delay:-2.25s}
+.cierre{text-align:center}
+.cierre .boton{margin:34px auto 0;max-width:380px;font-size:19px}
+
+footer{border-top:2px solid var(--edge);padding:30px 16px calc(30px + env(safe-area-inset-bottom));text-align:center;color:var(--dim);font-size:14px}
+footer nav{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 24px;margin-bottom:12px;font-weight:700;text-transform:uppercase}
+footer a{color:var(--texto);text-decoration:none}footer a:hover{color:var(--oro)}
+
+/* Aparecen al llegar, sin robar nada si el sistema pide menos movimiento. */
+.aparece{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.aparece.visto{opacity:1;transform:none}
+
+@media (max-width:820px){
+  .heroe .dentro{grid-template-columns:1fr;text-align:center;justify-items:center}
+  .heroe .qb{order:-1;width:190px;margin:-20px 0 -30px}
+  .heroe p{margin-left:auto;margin-right:auto}
+  .escalera{grid-template-columns:repeat(2,1fr);gap:12px}
+  .telefono{border-radius:22px;padding:8px}.telefono video{border-radius:14px}
+  .telefono .vivo{top:18px;left:18px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .aparece{opacity:1;transform:none}
+}
+.idioma{position:fixed;top:48px;right:12px;z-index:21;display:flex;border:2px solid var(--edge);border-radius:999px;overflow:hidden;background:#0b0f1ccc;backdrop-filter:blur(6px);font-weight:700;font-size:13px}
+.idioma a{padding:6px 12px;text-decoration:none;color:var(--dim)}.idioma a.activo{background:var(--oro);color:#1a1405}
+</style>
+</head>
+<body>
+<div class="cinta" aria-hidden="true"><div class="corre">
+  <span>Out now on the App Store</span><span>1st &amp; 10 · every down is yours</span><span>College → Draft → Hall of Fame</span><span>32 teams · 53-man rosters</span><span>100 Game Center achievements</span><span>No ads · no account</span>
+  <span>Out now on the App Store</span><span>1st &amp; 10 · every down is yours</span><span>College → Draft → Hall of Fame</span><span>32 teams · 53-man rosters</span><span>100 Game Center achievements</span><span>No ads · no account</span>
+</div></div>
+
+<nav class="idioma" aria-label="Idioma / Language"><a href="../" hreflang="es" lang="es">ES</a><a href="./" class="activo" aria-current="page" hreflang="en" lang="en">EN</a></nav>
+<header class="heroe">
+  <video autoplay muted loop playsinline preload="metadata" poster="../assets/juego_poster.jpg"><source src="../assets/juego.mp4" type="video/mp4"></video>
+  <div class="dentro">
+    <div>
+      <div class="marcador matriz"><h1 class="leds">Pixel<span class="l2">Football</span></h1></div>
+      <div class="lema rotulo">Your career <span class="oro">starts here</span></div>
+      <p>Live a quarterback's whole career, from college to the Hall of Fame. Your offense is never simulated: you play every single down.</p>
+      <div class="ctas">
+        <a class="boton primario" href="https://apps.apple.com/app/id6816288775">Download free</a>
+        <a class="boton secundario" href="#partido">Watch it play</a>
+      </div>
+      <small>iPhone · In English and Spanish</small>
+    </div>
+    <img class="qb pixel" src="../assets/qb.png" alt="The Pixel Football QB throwing">
+  </div>
+  <a class="flecha" href="#partido" aria-label="Scroll down">▼</a>
+</header>
+
+<section class="seccion" id="partido">
+  <div class="aparece" style="text-align:center"><span class="etiqueta">The game</span></div>
+  <h2 class="titulo aparece" style="margin-top:14px">You throw.<span>You read. You decide.</span></h2>
+  <p class="sub aparece">Pull the slingshot and let go. The pocket really collapses, the wind pushes the ball and the sack is physical: if the rusher touches you, it's over.</p>
+  <div class="telefono aparece">
+    <span class="vivo">Live</span>
+    <video autoplay muted loop playsinline preload="metadata" poster="../assets/juego_poster.jpg"><source src="../assets/juego.mp4" type="video/mp4"></video>
+  </div>
+</section>
+
+<section class="seccion">
+  <div class="aparece" style="text-align:center"><span class="etiqueta">The career</span></div>
+  <h2 class="titulo aparece" style="margin-top:14px">From the bench<span>to command</span></h2>
+  <p class="sub aparece">You arrive as just another guy. Play well and the coach trusts you; once you are in command, the draft, signings and trades are yours.</p>
+  <div class="escalera">
+    <div class="escalon aparece"><img src="../assets/en/carrera/1_banca.jpg" alt="Bench" loading="lazy"></div>
+    <div class="escalon aparece"><img src="../assets/en/carrera/2_relevo.jpg" alt="Backup" loading="lazy"></div>
+    <div class="escalon aparece"><img src="../assets/en/carrera/3_titular.jpg" alt="Starter" loading="lazy"></div>
+    <div class="escalon aparece"><img src="../assets/en/carrera/4_mando.jpg" alt="Command" loading="lazy"></div>
+  </div>
+</section>
+
+<section style="padding:clamp(40px,6vw,70px) 0">
+  <div class="aparece" style="text-align:center"><span class="etiqueta">The playbook</span></div>
+  <h2 class="titulo aparece" style="margin-top:14px;padding:0 16px">Eight plays<span>to get it</span></h2>
+  <div class="carril" id="carril">
+    <figure><img src="../assets/en/jugadas/1_cada_down.jpg" alt="Play 01: every down is yours" loading="lazy"></figure>
+    <figure><img src="../assets/en/jugadas/2_mando.jpg" alt="Play 02: earn command" loading="lazy"></figure>
+    <figure><img src="../assets/en/jugadas/3_mejora.jpg" alt="Play 03: upgrade your QB and your roster" loading="lazy"></figure>
+    <figure><img src="../assets/en/jugadas/4_draft.jpg" alt="Play 04: draft night" loading="lazy"></figure>
+    <figure><img src="../assets/en/jugadas/5_temporada.jpg" alt="Play 05: the season" loading="lazy"></figure>
+    <figure><img src="../assets/en/jugadas/7_creador.jpg" alt="Play 07: the play creator" loading="lazy"></figure>
+    <figure><img src="../assets/en/jugadas/8_visores.jpg" alt="Play 08: the scouts" loading="lazy"></figure>
+    <figure><img src="../assets/en/jugadas/9_gran_partido.jpg" alt="Play 09: the Big Game" loading="lazy"></figure>
+  </div>
+  <div class="mueve"><button type="button" data-dir="-1" aria-label="Previous">◀</button><button type="button" data-dir="1" aria-label="Next">▶</button></div>
+</section>
+
+<section class="seccion">
+  <h2 class="titulo aparece">A whole league<span>that never stops</span></h2>
+  <div class="rasgos">
+    <div class="rasgo aparece"><div class="num">32</div><h3>Living teams</h3><p>Every club has its own stadium, bank account, payroll and 53 players measured on the field.</p></div>
+    <div class="rasgo aparece"><div class="num">18</div><h3>Weeks and playoffs</h3><p>A season with a bye week, the playoff race and the Big Game.</p></div>
+    <div class="rasgo aparece"><div class="num">3</div><h3>Draft rounds</h3><p>Plus free agents, trades, waivers and a market that moves even when you're not looking.</p></div>
+    <div class="rasgo aparece"><div class="num">✎</div><h3>Your own playbook</h3><p>Draw your routes with your finger and call them in the game like any other play.</p></div>
+    <div class="rasgo aparece"><div class="num">100</div><h3>Achievements</h3><p>On Game Center, from your first touchdown to a retired jersey.</p></div>
+    <div class="rasgo aparece"><div class="num">0</div><h3>Ads</h3><p>No account, no ads and no tracking. Your save lives on your phone.</p></div>
+  </div>
+</section>
+
+<section class="vitrina">
+  <div class="seccion cierre">
+    <div class="aparece"><span class="etiqueta">The trophy case</span></div>
+    <h2 class="titulo aparece" style="margin-top:14px">How many rings<span>fit in your career?</span></h2>
+    <div class="anillos">
+      <img class="pixel" src="../assets/anillo_1.png" alt="Championship ring" loading="lazy">
+      <img class="pixel" src="../assets/anillo_2.png" alt="Championship ring" loading="lazy">
+      <img class="pixel" src="../assets/anillo_3.png" alt="Championship ring" loading="lazy">
+      <img class="pixel" src="../assets/anillo_4.png" alt="Championship ring" loading="lazy">
+    </div>
+    <a class="boton primario aparece" href="https://apps.apple.com/app/id6816288775">Start your career</a>
+  </div>
+</section>
+
+<footer>
+  <nav>
+    <a href="https://apps.apple.com/app/id6816288775">App Store</a>
+    <a href="https://www.instagram.com/pixelfootballapp/">Instagram</a>
+    <a href="links/">Links</a>
+    <a href="../soporte">Support</a>
+    <a href="../privacidad">Privacy</a>
+  </nav>
+  Teams, players and colleges are fictional.
+</footer>
+
+<script>
+// Las secciones entran al llegar a ellas.
+(function(){
+  var els=document.querySelectorAll('.aparece');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('visto')});return}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visto');io.unobserve(e.target)}})},{threshold:.12});
+  els.forEach(function(e){io.observe(e)});
+})();
+// Los videos sólo corren cuando se ven (y arrancan aunque el navegador no los haya lanzado solo).
+(function(){
+  var vs=document.querySelectorAll('video');
+  if(!('IntersectionObserver' in window))return;
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(e.isIntersecting){var p=e.target.play();if(p&&p.catch)p.catch(function(){})}else{e.target.pause()}
+  })},{threshold:.2});
+  vs.forEach(function(v){io.observe(v)});
+})();
+// Las flechas del carril de jugadas.
+(function(){
+  var c=document.getElementById('carril');
+  document.querySelectorAll('.mueve button').forEach(function(b){
+    b.addEventListener('click',function(){c.scrollBy({left:(c.firstElementChild.offsetWidth+18)*+b.dataset.dir,behavior:'smooth'})});
+  });
+})();
+</script>
+</body>
+</html>
