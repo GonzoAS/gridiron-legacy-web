@@ -1,3 +1,5 @@
+**Español** · [English](en/support)
+
 # Soporte · Pixel Football
 
 Pixel Football es un juego de carrera de quarterback: cada down tuyo se juega,

@@ -1,3 +1,5 @@
+**Español** · [English](en/privacy)
+
 # Política de privacidad · Pixel Football
 
 _Última actualización: 3 de octubre de 2026._
