@@ -8,7 +8,7 @@
 <meta name="apple-itunes-app" content="app-id=6816288775">
 <meta property="og:title" content="Pixel Football · La carrera de un quarterback">
 <meta property="og:description" content="Cada down tuyo se juega. Del college al Salón de la Fama. Gratis en la App Store.">
-<meta property="og:image" content="https://gonzoas.github.io/gridiron-legacy-web/assets/shots/1.jpg">
+<meta property="og:image" content="https://gonzoas.github.io/gridiron-legacy-web/assets/tele/01_portada.jpg">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#141B30">
@@ -115,12 +115,25 @@ footer a{color:var(--texto);text-decoration:none}footer a:hover{color:var(--oro)
 }
 .idioma{position:fixed;top:48px;right:12px;z-index:21;display:flex;border:2px solid var(--edge);border-radius:999px;overflow:hidden;background:#0b0f1ccc;backdrop-filter:blur(6px);font-weight:700;font-size:13px}
 .idioma a{padding:6px 12px;text-decoration:none;color:var(--dim)}.idioma a.activo{background:var(--oro);color:#1a1405}
+/* LA TELE: las capturas de la tienda, de lado, en el mismo carril. */
+.carril.ancho figure{width:min(88vw,760px)}
+.carril.ancho img{aspect-ratio:2796/1290}
+/* LO NUEVO: lo que ya salió y lo que viene. */
+.nuevo{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;margin-top:44px}
+.tanda{background:linear-gradient(180deg,var(--panel),#141b30);border:2px solid var(--edge);border-radius:12px;padding:26px}
+.tanda.viene{border-style:dashed}
+.tanda h3{display:flex;align-items:center;gap:12px;font-size:22px;margin-bottom:14px}
+.tanda h3 .etiqueta{font-size:12px}
+.tanda.viene h3 .etiqueta{background:transparent;color:var(--oro);border:2px solid var(--oro)}
+.tanda ul{list-style:none;display:grid;gap:12px}
+.tanda li b{display:block;text-transform:uppercase;letter-spacing:.04em;font-size:15px}
+.tanda li span{color:var(--dim);font-size:15px}
 </style>
 </head>
 <body>
 <div class="cinta" aria-hidden="true"><div class="corre">
-  <span>Ya en la App Store</span><span>1ro y 10 · cada down es tuyo</span><span>College → Draft → Salón de la Fama</span><span>32 equipos · 53 por roster</span><span>100 logros de Game Center</span><span>Sin anuncios · sin cuenta</span>
-  <span>Ya en la App Store</span><span>1ro y 10 · cada down es tuyo</span><span>College → Draft → Salón de la Fama</span><span>32 equipos · 53 por roster</span><span>100 logros de Game Center</span><span>Sin anuncios · sin cuenta</span>
+  <span>Ya en la App Store</span><span>Nuevo: todo el juego de tele</span><span>1ro y 10 · cada down es tuyo</span><span>Muy pronto: el locutor</span><span>College → Draft → Salón de la Fama</span><span>32 equipos · 53 por roster</span><span>100 logros de Game Center</span><span>Sin anuncios · sin cuenta</span>
+  <span>Ya en la App Store</span><span>Nuevo: todo el juego de tele</span><span>1ro y 10 · cada down es tuyo</span><span>Muy pronto: el locutor</span><span>College → Draft → Salón de la Fama</span><span>32 equipos · 53 por roster</span><span>100 logros de Game Center</span><span>Sin anuncios · sin cuenta</span>
 </div></div>
 
 <nav class="idioma" aria-label="Idioma / Language"><a href="./" class="activo" aria-current="page" hreflang="es" lang="es">ES</a><a href="en/" hreflang="en" lang="en">EN</a></nav>
@@ -135,7 +148,7 @@ footer a{color:var(--texto);text-decoration:none}footer a:hover{color:var(--oro)
         <a class="boton primario" href="https://apps.apple.com/app/id6816288775">Descárgalo gratis</a>
         <a class="boton secundario" href="#partido">Míralo jugar</a>
       </div>
-      <small>iPhone · En español y en inglés</small>
+      <small>iPhone y iPad · En español y en inglés</small>
     </div>
     <img class="qb pixel" src="assets/qb.png" alt="El QB de Pixel Football lanzando">
   </div>
@@ -150,6 +163,24 @@ footer a{color:var(--texto);text-decoration:none}footer a:hover{color:var(--oro)
     <span class="vivo">En vivo</span>
     <video autoplay muted loop playsinline preload="metadata" poster="assets/juego_poster.jpg"><source src="assets/juego.mp4" type="video/mp4"></video>
   </div>
+</section>
+
+<section style="padding:clamp(40px,6vw,70px) 0">
+  <div class="aparece" style="text-align:center"><span class="etiqueta">Así se ve</span></div>
+  <h2 class="titulo aparece" style="margin-top:14px;padding:0 16px">Todo el juego<span>se viste de tele</span></h2>
+  <p class="sub aparece" style="padding:0 16px">Tu vestidor, tu roster, el despacho y la noche del draft, como en una transmisión.</p>
+  <div class="carril ancho">
+    <figure><img src="assets/tele/02_duelo.jpg" alt="Cada domingo un duelo" loading="lazy"></figure>
+    <figure><img src="assets/tele/03_pase.jpg" alt="Cada pase es tuyo" loading="lazy"></figure>
+    <figure><img src="assets/tele/04_vestidor.jpg" alt="Tu vestidor, tu carrera" loading="lazy"></figure>
+    <figure><img src="assets/tele/05_tu_qb.jpg" alt="Crea a tu QB" loading="lazy"></figure>
+    <figure><img src="assets/tele/06_creador.jpg" alt="Dibuja tus jugadas" loading="lazy"></figure>
+    <figure><img src="assets/tele/07_draft.jpg" alt="Vive la noche del draft" loading="lazy"></figure>
+    <figure><img src="assets/tele/08_roster.jpg" alt="Arma tu equipo" loading="lazy"></figure>
+    <figure><img src="assets/tele/09_despacho.jpg" alt="Manda en el despacho" loading="lazy"></figure>
+    <figure><img src="assets/tele/10_playoffs.jpg" alt="Camino al Gran Partido" loading="lazy"></figure>
+  </div>
+  <div class="mueve"><button type="button" data-dir="-1" aria-label="Anterior">◀</button><button type="button" data-dir="1" aria-label="Siguiente">▶</button></div>
 </section>
 
 <section class="seccion">
@@ -182,13 +213,36 @@ footer a{color:var(--texto);text-decoration:none}footer a:hover{color:var(--oro)
 </section>
 
 <section class="seccion">
+  <div class="aparece" style="text-align:center"><span class="etiqueta">Lo nuevo</span></div>
+  <h2 class="titulo aparece" style="margin-top:14px">El juego<span>no deja de crecer</span></h2>
+  <div class="nuevo">
+    <div class="tanda aparece"><h3><span class="etiqueta">1.7</span>Todo de tele</h3><ul>
+      <li><b>Tu vestidor nuevo</b><span>Tu OVR en holograma, tus puntos a la vista y Pixel News con lo nuevo de la app.</span></li>
+      <li><b>Pantallas de transmisión</b><span>Roster, banca, mercado, tienda, líderes, calendario y tu ficha.</span></li>
+      <li><b>El despacho</b><span>La caja del club como ticker y las ofertas como un cromo.</span></li>
+      <li><b>14 rostros y 20 tintes</b><span>Crea a tu QB y elige tu carrera con él en escena.</span></li>
+      <li><b>Sonido con voz</b><span>El QB canta la jugada, la grada respira y el árbitro anuncia.</span></li>
+    </ul></div>
+    <div class="tanda viene aparece"><h3><span class="etiqueta">Muy pronto</span>1.8</h3><ul>
+      <li><b>El locutor</b><span>Presenta el partido, canta tus touchdowns y llama tu pick en el draft.</span></li>
+      <li><b>Los colores de cada club</b><span>Calcetas y careta con los colores de cada uno de los 32.</span></li>
+      <li><b>El casco nuevo</b><span>Mate y con la máscara del color de su club, en toda la app.</span></li>
+      <li><b>El playcall de tele</b><span>Ocho jugadas a la vista y el tiempo fuera a la mano.</span></li>
+      <li><b>Tu cara en el draft</b><span>Subes al podio con tu rostro y el comisionado te recibe.</span></li>
+    </ul></div>
+  </div>
+</section>
+
+<section class="seccion">
   <h2 class="titulo aparece">Una liga entera<span>que no para</span></h2>
   <div class="rasgos">
     <div class="rasgo aparece"><div class="num">32</div><h3>Equipos vivos</h3><p>Cada club con su estadio, su caja, su nómina y sus 53 jugadores medidos en la cancha.</p></div>
     <div class="rasgo aparece"><div class="num">18</div><h3>Semanas y playoffs</h3><p>Temporada con descanso, la carrera por los playoffs y El Gran Partido.</p></div>
     <div class="rasgo aparece"><div class="num">3</div><h3>Rondas de draft</h3><p>Más agentes libres, traspasos, waivers y un mercado que se mueve aunque no mires.</p></div>
     <div class="rasgo aparece"><div class="num">✎</div><h3>Tu propio libro</h3><p>Dibuja tus rutas con el dedo y llámalas en el partido como cualquier otra jugada.</p></div>
-    <div class="rasgo aparece"><div class="num">100</div><h3>Logros</h3><p>En Game Center, del primer touchdown al dorsal retirado.</p></div>
+    <div class="rasgo aparece"><div class="num">100</div><h3>Logros</h3><p>En Game Center, del primer touchdown al dorsal retirado. Y 182 rankings.</p></div>
+    <div class="rasgo aparece"><div class="num">10</div><h3>Pruebas del combine</h3><p>Tu tutorial es la Academia: tu nota en el combine mueve tu pick en el draft.</p></div>
+    <div class="rasgo aparece"><div class="num">14</div><h3>Rostros para tu QB</h3><p>Con 20 tintes de pelo, tu peinado, tu dorsal y tu universidad.</p></div>
     <div class="rasgo aparece"><div class="num">0</div><h3>Anuncios</h3><p>Sin cuenta, sin anuncios y sin rastreo. La partida vive en tu teléfono.</p></div>
   </div>
 </section>
@@ -235,11 +289,13 @@ footer a{color:var(--texto);text-decoration:none}footer a:hover{color:var(--oro)
   })},{threshold:.2});
   vs.forEach(function(v){io.observe(v)});
 })();
-// Las flechas del carril de jugadas.
+// Las flechas de cada carril (el de la tele y el de jugadas): cada par mueve el carril que tiene encima.
 (function(){
-  var c=document.getElementById('carril');
-  document.querySelectorAll('.mueve button').forEach(function(b){
-    b.addEventListener('click',function(){c.scrollBy({left:(c.firstElementChild.offsetWidth+18)*+b.dataset.dir,behavior:'smooth'})});
+  document.querySelectorAll('.mueve').forEach(function(m){
+    var c=m.previousElementSibling;
+    m.querySelectorAll('button').forEach(function(b){
+      b.addEventListener('click',function(){c.scrollBy({left:(c.firstElementChild.offsetWidth+18)*+b.dataset.dir,behavior:'smooth'})});
+    });
   });
 })();
 </script>
