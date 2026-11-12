@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- /app/: la puerta de los anuncios (Instagram, 2026-11-12). Meta no deja que una
+     promoción desde Instagram apunte a apps.apple.com (eso sólo lo admite el objetivo
+     de instalaciones de Ads Manager), así que el anuncio apunta AQUÍ. En iPhone y iPad
+     el script de abajo manda a la App Store antes de pintar nada; en cualquier otro
+     aparato (y para el rastreador de Meta, que es Linux) esta es una landing normal con
+     el botón. El salto va en JS y no en <meta http-equiv="refresh"> a propósito: el
+     refresh lo seguiría también el rastreador y la página dejaría de ser «un sitio web». -->
+<script>
+(function(){
+  var ua=navigator.userAgent||"";
+  var ios=/iPhone|iPad|iPod/.test(ua)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);
+  if(ios){location.replace("https://apps.apple.com/app/id6816288775");}
+})();
+</script>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pixel Football · Get the game</title>
+<meta name="description" content="Pixel Football: be the QB, from the draft to the Big Game. Free on iPhone and iPad.">
+<meta name="robots" content="noindex">
+<meta name="apple-itunes-app" content="app-id=6816288775">
+<meta property="og:title" content="Pixel Football · Get the game">
+<meta property="og:description" content="Be the QB. Write your legacy. Free on iPhone and iPad.">
+<meta property="og:image" content="https://gonzoas.github.io/gridiron-legacy-web/assets/en/og.jpg">
+<meta name="theme-color" content="#141B30">
+<link rel="icon" href="../assets/icono.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/estilo.css">
+<style>
+body{min-height:100vh;background:linear-gradient(180deg,rgba(20,27,48,.55),var(--bg) 55%),url("../assets/estadio.jpg") center top/cover no-repeat fixed}
+main{max-width:480px;margin:0 auto;padding:48px 16px 32px;display:flex;flex-direction:column;align-items:center;text-align:center}
+.icono{width:112px;height:112px;border-radius:26px;border:3px solid var(--oro);box-shadow:0 10px 30px rgba(0,0,0,.5)}
+.marcador{margin-top:22px;padding:12px 24px}
+.leds{font-size:34px}
+.bio{margin-top:16px;color:var(--texto)}
+.bio .dim{display:block;font-size:15px}
+.lista{width:100%;display:flex;flex-direction:column;gap:14px;margin-top:28px}
+.lista .boton{font-size:17px;width:100%}
+.nota{margin-top:18px;color:var(--dim);font-size:14px}
+footer{margin-top:32px;color:var(--dim);font-size:13px}
+</style>
+</head>
+<body>
+<main>
+  <img class="icono" src="../assets/icono.png" alt="Pixel Football icon">
+  <div class="marcador"><h1 class="leds">Pixel<span class="l2">Football</span></h1></div>
+  <p class="bio">Be the QB. Write your legacy.<span class="dim">College → Draft → Hall of Fame</span></p>
+  <nav class="lista">
+    <a class="boton primario" href="https://apps.apple.com/app/id6816288775">Download on the App Store</a>
+    <a class="boton secundario" href="../en/">See the game</a>
+  </nav>
+  <p class="nota">Free on iPhone and iPad.</p>
+  <footer>Pixel Football · <a href="../en/privacy">Privacy</a></footer>
+</main>
+</body>
+</html>
