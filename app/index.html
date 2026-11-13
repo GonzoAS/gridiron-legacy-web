@@ -4,16 +4,16 @@
 <meta charset="utf-8">
 <!-- /app/: la puerta de los anuncios (Instagram, 2026-11-12). Meta no deja que una
      promoción desde Instagram apunte a apps.apple.com (eso sólo lo admite el objetivo
-     de instalaciones de Ads Manager), así que el anuncio apunta AQUÍ. En iPhone y iPad
-     el script de abajo manda a la App Store antes de pintar nada; en cualquier otro
-     aparato (y para el rastreador de Meta, que es Linux) esta es una landing normal con
-     el botón. El salto va en JS y no en <meta http-equiv="refresh"> a propósito: el
-     refresh lo seguiría también el rastreador y la página dejaría de ser «un sitio web». -->
+     de instalaciones de Ads Manager), así que el anuncio apunta AQUÍ. Desde la noche
+     del 12-nov (Gonzalo: «mejor sí apuntarlo a nuestra landing page») esta puerta manda
+     a LA LANDING, en el idioma del navegador: inglés para todos salvo quien navega en
+     español. Antes mandaba a la App Store en iPhone; esa versión vive en el historial
+     del repo por si se quiere volver al salto directo. El salto va en JS y no en
+     <meta http-equiv="refresh"> a propósito: el rastreador de Meta ve un sitio web. -->
 <script>
 (function(){
-  var ua=navigator.userAgent||"";
-  var ios=/iPhone|iPad|iPod/.test(ua)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);
-  if(ios){location.replace("https://apps.apple.com/app/id6816288775");}
+  var idioma=(navigator.language||navigator.userLanguage||"en").toLowerCase();
+  location.replace(idioma.indexOf("es")===0 ? "../" : "../en/");
 })();
 </script>
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -38,7 +38,6 @@ main{max-width:480px;margin:0 auto;padding:48px 16px 32px;display:flex;flex-dire
 .bio .dim{display:block;font-size:15px}
 .lista{width:100%;display:flex;flex-direction:column;gap:14px;margin-top:28px}
 .lista .boton{font-size:17px;width:100%}
-.nota{margin-top:18px;color:var(--dim);font-size:14px}
 footer{margin-top:32px;color:var(--dim);font-size:13px}
 </style>
 </head>
@@ -48,10 +47,9 @@ footer{margin-top:32px;color:var(--dim);font-size:13px}
   <div class="marcador"><h1 class="leds">Pixel<span class="l2">Football</span></h1></div>
   <p class="bio">Be the QB. Write your legacy.<span class="dim">College → Draft → Hall of Fame</span></p>
   <nav class="lista">
-    <a class="boton primario" href="https://apps.apple.com/app/id6816288775">Download on the App Store</a>
-    <a class="boton secundario" href="../en/">See the game</a>
+    <a class="boton primario" href="../en/">See the game</a>
+    <a class="boton secundario" href="https://apps.apple.com/app/id6816288775">Download on the App Store</a>
   </nav>
-  <p class="nota">Free on iPhone and iPad.</p>
   <footer>Pixel Football · <a href="../en/privacy">Privacy</a></footer>
 </main>
 </body>

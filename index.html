@@ -11,7 +11,7 @@
 <meta property="og:image" content="https://gonzoas.github.io/gridiron-legacy-web/assets/tele/01_portada.jpg">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#141B30">
+<meta name="theme-color" content="#0b0f1c">
 <link rel="icon" href="assets/icono.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preload" href="assets/ChakraPetch-Bold.ttf" as="font" type="font/ttf" crossorigin>
@@ -20,184 +20,228 @@
 <link rel="alternate" hreflang="x-default" href="https://gonzoas.github.io/gridiron-legacy-web/">
 <link rel="stylesheet" href="assets/estilo.css">
 <style>
-body{overflow-x:hidden}
+/* LA LANDING DE TRANSMISIÓN (2026-11-12, la maqueta C que eligió Gonzalo): la página
+   se viste como el partido en la tele. El score bug es la cabecera, la cinta corre
+   debajo, el héroe es el estadio con el letrero de LEDs y un rótulo de tercio inferior,
+   y cada pantalla del juego es una VENTANA de tele con su rótulo al pie. */
+body{overflow-x:hidden;background:var(--bg)}
 .pixel{image-rendering:pixelated;image-rendering:crisp-edges}
 
-/* LA CINTA DEL MARCADOR: corre arriba como la de una transmisión. */
-.cinta{position:fixed;top:0;left:0;right:0;z-index:20;height:38px;overflow:hidden;background:#0b0f1c;border-bottom:2px solid var(--oro);display:flex;align-items:center}
-.cinta .corre{display:flex;gap:48px;white-space:nowrap;animation:corre 32s linear infinite;padding-left:48px;font-weight:700;text-transform:uppercase;font-size:14px;letter-spacing:.08em}
-.cinta .corre span::before{content:"●";color:var(--oro);margin-right:14px;font-size:10px;vertical-align:2px}
+/* EL SCORE BUG: la barra del partido como cabecera fija. */
+.bug{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:stretch;background:#0b0f1c;border-bottom:3px solid var(--oro);font-weight:700;text-transform:uppercase;font-size:13px;letter-spacing:.06em;height:50px}
+.bug>*{display:flex;align-items:center;gap:10px;padding:0 16px;border-right:1px solid var(--edge);color:var(--texto);text-decoration:none}
+.bug img{width:26px;height:26px;border-radius:6px}
+.bug .rojo{background:#d23b3b;color:#fff;padding:2px 8px;border-radius:3px;font-size:11px}
+.bug .idioma{gap:0;padding:0}
+.bug .idioma a{padding:0 12px;height:100%;display:flex;align-items:center;color:var(--dim);text-decoration:none}
+.bug .idioma a.activo{background:var(--edge);color:var(--texto)}
+.bug .get{margin-left:auto;border-right:0;background:var(--oro);color:#1a1405;padding:0 22px}
+/* LA CINTA: corre bajo el score bug, como la de los resultados. */
+.cinta{position:fixed;top:50px;left:0;right:0;z-index:29;height:30px;overflow:hidden;background:#0b0f1ccc;backdrop-filter:blur(6px);border-bottom:1px solid var(--edge);display:flex;align-items:center}
+.cinta .corre{display:flex;gap:44px;white-space:nowrap;animation:corre 34s linear infinite;padding-left:44px;font-weight:700;text-transform:uppercase;font-size:12px;letter-spacing:.08em;color:var(--dim)}
+.cinta .corre span::before{content:"●";color:var(--oro);margin-right:12px;font-size:9px;vertical-align:2px}
 @keyframes corre{to{transform:translateX(-50%)}}
 
-/* EL HÉROE: el partido de fondo, el letrero de LEDs y el QB. */
-.heroe{position:relative;min-height:100svh;display:grid;place-items:center;padding:88px 16px 56px;overflow:hidden;isolation:isolate}
-.heroe video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;filter:saturate(1.1)}
-.heroe::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at 50% 40%,rgba(20,27,48,.2),rgba(20,27,48,.8) 75%),linear-gradient(180deg,rgba(20,27,48,.2),var(--bg) 96%)}
-.heroe .dentro{display:grid;grid-template-columns:auto auto;align-items:center;gap:clamp(16px,4vw,56px);max-width:1100px}
-.heroe .marcador{padding:22px 40px}
-.matriz{position:relative}
-.matriz::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle,transparent 55%,#0b0f1c 62%) 0 0/5px 5px;opacity:.55}
-.heroe .leds{font-size:clamp(46px,8.5vw,104px);animation:enciende 1.6s steps(6) both}
+/* EL HÉROE: el estadio, la luz de los reflectores, el letrero y el tercio inferior. */
+.heroe{position:relative;min-height:100svh;display:grid;align-items:center;padding:120px 20px 56px;background:url(assets/estadio.jpg) center 30%/cover no-repeat;isolation:isolate;overflow:hidden}
+.heroe::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(20,27,48,.35),rgba(20,27,48,.55) 50%,var(--bg) 100%)}
+.luz{position:absolute;top:-10%;left:50%;width:140vw;height:70vh;transform:translateX(-50%);background:radial-gradient(ellipse at 50% 0%,rgba(248,240,216,.22),transparent 60%);z-index:-1}
+.heroe .dentro{max-width:1240px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1.15fr;gap:40px;align-items:center}
+.heroe .marcador{padding:18px 30px}
+.heroe .leds{font-size:clamp(46px,7vw,92px);animation:enciende 1.6s steps(6)}  /* sin `both`: si la animación no corre, el letrero se ve igual */
 @keyframes enciende{0%{opacity:0;filter:brightness(3)}60%{opacity:1}100%{opacity:1;filter:none}}
-.heroe .lema{margin-top:26px;font-size:clamp(22px,3.6vw,36px)}
-.heroe p{max-width:540px;margin-top:12px;font-size:clamp(16px,2.2vw,19px);color:var(--texto)}
-.ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
-.ctas .boton{font-size:18px;flex:1 1 220px}
-.heroe small{display:block;margin-top:12px;color:var(--dim);font-size:14px}
-.qb{width:clamp(220px,32vw,420px);filter:drop-shadow(0 18px 24px rgba(0,0,0,.6));animation:flota 2.4s ease-in-out infinite}
-@keyframes flota{50%{transform:translateY(-12px)}}
-.flecha{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);color:var(--oro);font-size:26px;animation:flota 1.6s ease-in-out infinite;text-decoration:none}
-
-.seccion{max-width:1140px;margin:0 auto;padding:clamp(64px,10vw,110px) 16px}
-.titulo{font-size:clamp(30px,5.4vw,56px);text-align:center}
-.titulo span{display:block;color:var(--oro)}
-.sub{text-align:center;color:var(--dim);max-width:620px;margin:14px auto 0;font-size:18px}
-.etiqueta{display:inline-block;background:var(--oro);color:#1a1405;font-weight:700;text-transform:uppercase;font-size:13px;letter-spacing:.08em;padding:4px 10px;border-radius:4px}
-
-/* EL PARTIDO EN UN TELÉFONO DE LADO. */
-.telefono{position:relative;margin:44px auto 0;max-width:900px;aspect-ratio:1072/796;border-radius:34px;padding:14px;background:#05070d;border:3px solid var(--edge);box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 0 1px #000,0 0 60px rgba(232,178,58,.12)}
-.telefono video{width:100%;height:100%;object-fit:cover;border-radius:22px;display:block;background:#000}
-.telefono .vivo{position:absolute;top:28px;left:28px;background:#d23b3b;color:#fff;font-weight:700;font-size:12px;letter-spacing:.1em;padding:4px 10px;border-radius:4px}
-.telefono .vivo::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:#fff;margin-right:7px;vertical-align:1px;animation:late 1s steps(2) infinite}
+.tercio{margin-top:26px;display:grid;grid-template-columns:auto 1fr;max-width:620px;box-shadow:0 14px 40px rgba(0,0,0,.5)}
+.tercio .tag{background:var(--oro);color:#1a1405;font-weight:700;text-transform:uppercase;writing-mode:vertical-rl;transform:rotate(180deg);padding:14px 8px;font-size:12px;letter-spacing:.12em;text-align:center}
+.tercio .cuerpo{background:rgba(11,15,28,.92);border:2px solid var(--edge);border-left:0;padding:18px 22px}
+.tercio h1{font-weight:700;text-transform:uppercase;font-size:clamp(24px,3vw,36px);line-height:1.05}
+.tercio h1 span{color:var(--oro)}
+.tercio p{margin-top:10px;color:var(--dim);font-size:16px}
+.ctas{display:flex;gap:12px;margin-top:16px;flex-wrap:wrap}
+.ctas .boton{font-size:17px;min-height:54px;flex:1 1 200px}
+.tercio small{display:block;margin-top:12px;color:var(--dim);font-size:13px}
+/* EL TELÉFONO EN PERSPECTIVA, con el partido en vivo. */
+.tele{perspective:1400px;justify-self:end;width:min(100%,720px)}
+.tele .marco{position:relative;aspect-ratio:19.5/9;border-radius:34px;padding:12px;background:#05070d;border:3px solid #2a3550;box-shadow:0 40px 90px rgba(0,0,0,.65),0 0 60px rgba(232,178,58,.12);transform:rotateY(-14deg) rotateX(6deg)}
+.tele video{width:100%;height:100%;object-fit:cover;border-radius:22px;display:block;background:#000}
+.tele .vivo{position:absolute;top:26px;left:26px;z-index:2;background:#d23b3b;color:#fff;font-weight:700;font-size:12px;letter-spacing:.1em;padding:4px 10px;border-radius:4px}
+.tele .vivo::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:#fff;margin-right:7px;vertical-align:1px;animation:late 1s steps(2) infinite}
 @keyframes late{50%{opacity:0}}
+.flecha{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);color:var(--oro);font-size:24px;text-decoration:none;animation:flota 1.6s ease-in-out infinite}
+@keyframes flota{50%{transform:translate(-50%,-10px)}}
 
-/* LA ESCALERA DE LA CARRERA. */
-.escalera{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:44px;counter-reset:paso}
-.escalon{position:relative;background:var(--panel);border:2px solid var(--edge);border-radius:12px;overflow:hidden;transition:transform .2s,border-color .2s}
-.escalon:hover{transform:translateY(-6px);border-color:var(--oro)}
-.escalon img{display:block;width:100%;aspect-ratio:1080/1350;object-fit:cover}
-.escalon b{position:absolute;top:10px;left:10px;counter-increment:paso;background:#0b0f1ccc;border:2px solid var(--oro);color:var(--oro);font-size:14px;padding:2px 9px;border-radius:4px;text-transform:uppercase}
-.escalon:last-child{border-color:var(--oro);box-shadow:0 0 40px rgba(232,178,58,.25)}
-
-/* LAS JUGADAS: los posts como un libro que se desliza. */
-.carril{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px max(16px,calc((100vw - 1140px)/2 + 16px)) 26px;margin-top:40px;scrollbar-width:thin;scrollbar-color:var(--oro) transparent}
-.carril figure{flex:0 0 auto;width:min(78vw,380px);scroll-snap-align:center;border-radius:14px;overflow:hidden;border:2px solid var(--edge);background:var(--panel);transition:transform .2s}
-.carril figure:hover{transform:scale(1.02)}
+/* LAS SECCIONES. */
+.secc{max-width:1240px;margin:0 auto;padding:clamp(60px,9vw,100px) 20px}
+.etq{display:inline-block;background:var(--oro);color:#1a1405;font-weight:700;text-transform:uppercase;font-size:13px;letter-spacing:.08em;padding:4px 10px;border-radius:4px}
+.titulo{font-weight:700;text-transform:uppercase;font-size:clamp(32px,5vw,60px);line-height:1;margin-top:14px}
+.titulo span{display:block;color:var(--oro)}
+.sub{color:var(--dim);max-width:640px;margin-top:14px;font-size:18px}
+/* LAS VENTANAS DE TELE: la pantalla real y su rótulo al pie. */
+.ventanas{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
+.ventanas.dos{grid-template-columns:repeat(2,1fr)}
+.ventanas.cuatro{grid-template-columns:repeat(4,1fr)}
+.ventana{position:relative;border:2px solid var(--edge);border-radius:12px;overflow:hidden;background:#000;aspect-ratio:2341/1080;transition:transform .2s,border-color .2s}
+.ventana:hover{transform:translateY(-4px);border-color:var(--oro)}
+.ventanas.cuatro .ventana{aspect-ratio:1080/1350}
+.ventana img{width:100%;height:100%;object-fit:cover;display:block}
+.ventana .rot{position:absolute;left:0;right:0;bottom:0;display:grid;grid-template-columns:auto 1fr;font-weight:700;text-transform:uppercase;font-size:13px;letter-spacing:.04em}
+.ventana .rot b{background:var(--oro);color:#1a1405;padding:8px 10px}
+.ventana .rot span{background:rgba(11,15,28,.9);padding:8px 12px;color:var(--texto)}
+/* LA BARRA DE ESTADÍSTICAS, como el score bug de la liga. */
+.stats{display:flex;margin-top:40px;background:#0b0f1c;border:2px solid var(--edge);border-radius:10px;overflow:hidden}
+.stats div{flex:1;padding:18px 10px;text-align:center;border-right:1px solid var(--edge)}
+.stats div:last-child{border-right:0}
+.stats b{display:block;color:var(--oro);font-size:40px;line-height:1}
+.stats span{display:block;color:var(--dim);font-size:12px;text-transform:uppercase;letter-spacing:.06em;margin-top:6px}
+/* LO NUEVO: tres gráficos de transmisión, uno por versión. */
+.nuevo{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;margin-top:40px}
+.tanda{background:#0b0f1c;border:2px solid var(--edge);border-radius:12px;overflow:hidden}
+.tanda h3{display:flex;align-items:center;gap:12px;background:var(--panel);border-bottom:2px solid var(--edge);padding:12px 18px;font-size:20px;text-transform:uppercase}
+.tanda h3 .etq{font-size:12px}
+.tanda.viene h3 .etq{background:transparent;color:var(--oro);border:2px solid var(--oro)}
+.tanda ul{list-style:none;display:grid;gap:12px;padding:18px}
+.tanda li b{display:block;text-transform:uppercase;letter-spacing:.04em;font-size:15px}
+.tanda li span{color:var(--dim);font-size:15px}
+/* EL LIBRO DE JUGADAS: los posts en un carril. */
+.carril{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px max(16px,calc((100vw - 1240px)/2 + 20px)) 26px;margin-top:36px;scrollbar-width:thin;scrollbar-color:var(--oro) transparent}
+.carril figure{flex:0 0 auto;width:min(78vw,360px);scroll-snap-align:center;border-radius:12px;overflow:hidden;border:2px solid var(--edge);background:var(--panel)}
 .carril img{display:block;width:100%;aspect-ratio:1080/1350;object-fit:cover}
-.mueve{display:flex;justify-content:center;gap:12px;margin-top:6px}
+.mueve{display:flex;justify-content:center;gap:12px;margin-top:4px}
 .mueve button{width:52px;height:52px;border-radius:50%;border:2px solid var(--edge);background:var(--panel);color:var(--oro);font:700 22px "Chakra",sans-serif;cursor:pointer}
 .mueve button:hover{border-color:var(--oro)}
-
-.rasgos{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:44px}
-.rasgo{background:linear-gradient(180deg,var(--panel),#141b30);border:2px solid var(--edge);border-radius:12px;padding:24px;transition:border-color .2s}
-.rasgo:hover{border-color:var(--oro)}
-.rasgo .num{font-weight:700;color:var(--oro);font-size:34px;line-height:1}
-.rasgo h3{font-size:19px;margin:10px 0 6px}
-.rasgo p{color:var(--dim)}
-
-/* LOS ANILLOS. */
-.vitrina{background:radial-gradient(ellipse at 50% 30%,#1f2a4a,#0b0f1c 70%);border-top:2px solid var(--edge);border-bottom:2px solid var(--edge)}
-.anillos{display:flex;justify-content:center;flex-wrap:wrap;gap:clamp(10px,3vw,34px);margin-top:44px}
-.anillos img{width:clamp(110px,18vw,190px);animation:flota 3s ease-in-out infinite;filter:drop-shadow(0 14px 22px rgba(0,0,0,.55))}
+/* LA VITRINA Y EL CIERRE. */
+.vitrina{background:radial-gradient(ellipse at 50% 30%,#1f2a4a,#0b0f1c 70%);border-top:2px solid var(--edge);border-bottom:2px solid var(--edge);text-align:center}
+.anillos{display:flex;justify-content:center;flex-wrap:wrap;gap:clamp(10px,3vw,34px);margin-top:40px}
+.anillos img{width:clamp(110px,18vw,190px);animation:flota2 3s ease-in-out infinite;filter:drop-shadow(0 14px 22px rgba(0,0,0,.55))}
+@keyframes flota2{50%{transform:translateY(-12px)}}
 .anillos img:nth-child(2){animation-delay:-.75s}.anillos img:nth-child(3){animation-delay:-1.5s}.anillos img:nth-child(4){animation-delay:-2.25s}
-.cierre{text-align:center}
-.cierre .boton{margin:34px auto 0;max-width:380px;font-size:19px}
-
+.vitrina .boton{margin:34px auto 0;max-width:380px;font-size:19px}
 footer{border-top:2px solid var(--edge);padding:30px 16px calc(30px + env(safe-area-inset-bottom));text-align:center;color:var(--dim);font-size:14px}
 footer nav{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 24px;margin-bottom:12px;font-weight:700;text-transform:uppercase}
 footer a{color:var(--texto);text-decoration:none}footer a:hover{color:var(--oro)}
-
-/* Aparecen al llegar, sin robar nada si el sistema pide menos movimiento. */
-.aparece{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.aparece{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
 .aparece.visto{opacity:1;transform:none}
 
-@media (max-width:820px){
-  .heroe .dentro{grid-template-columns:1fr;text-align:center;justify-items:center}
-  .heroe .qb{order:-1;width:190px;margin:-20px 0 -30px}
-  .heroe p{margin-left:auto;margin-right:auto}
-  .escalera{grid-template-columns:repeat(2,1fr);gap:12px}
-  .telefono{border-radius:22px;padding:8px}.telefono video{border-radius:14px}
-  .telefono .vivo{top:18px;left:18px}
+@media (max-width:900px){
+  .bug .oculta{display:none}
+  .bug>*{padding:0 12px}
+  .heroe{padding:100px 16px 44px;align-items:start}
+  .heroe .dentro{grid-template-columns:1fr;gap:22px}
+  .heroe .marcador{padding:14px 18px}
+  .tele{justify-self:center;width:104%}
+  .tele .marco{transform:rotateY(-8deg) rotateX(4deg);border-radius:22px;padding:8px}
+  .tele video{border-radius:14px}
+  .tercio{max-width:none}
+  .ventanas,.ventanas.dos{grid-template-columns:1fr}
+  .ventanas.cuatro{grid-template-columns:repeat(2,1fr);gap:12px}
+  .stats{flex-wrap:wrap}.stats div{flex:1 1 33%;border-bottom:1px solid var(--edge)}
+  .flecha{display:none}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
   .aparece{opacity:1;transform:none}
 }
-.idioma{position:fixed;top:48px;right:12px;z-index:21;display:flex;border:2px solid var(--edge);border-radius:999px;overflow:hidden;background:#0b0f1ccc;backdrop-filter:blur(6px);font-weight:700;font-size:13px}
-.idioma a{padding:6px 12px;text-decoration:none;color:var(--dim)}.idioma a.activo{background:var(--oro);color:#1a1405}
-/* LA TELE: las capturas de la tienda, de lado, en el mismo carril. */
-.carril.ancho figure{width:min(88vw,760px)}
-.carril.ancho img{aspect-ratio:2796/1290}
-/* LO NUEVO: lo que ya salió y lo que viene. */
-.nuevo{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;margin-top:44px}
-.tanda{background:linear-gradient(180deg,var(--panel),#141b30);border:2px solid var(--edge);border-radius:12px;padding:26px}
-.tanda.viene{border-style:dashed}
-.tanda h3{display:flex;align-items:center;gap:12px;font-size:22px;margin-bottom:14px}
-.tanda h3 .etiqueta{font-size:12px}
-.tanda.viene h3 .etiqueta{background:transparent;color:var(--oro);border:2px solid var(--oro)}
-.tanda ul{list-style:none;display:grid;gap:12px}
-.tanda li b{display:block;text-transform:uppercase;letter-spacing:.04em;font-size:15px}
-.tanda li span{color:var(--dim);font-size:15px}
 </style>
 </head>
 <body>
+<header class="bug">
+  <a href="./"><img src="assets/icono.png" alt="">Pixel Football</a>
+  <div class="oculta"><span class="rojo">En vivo</span>1ro y 10</div>
+  <div class="oculta">Ya en la App Store · 1.10</div>
+  <nav class="idioma" aria-label="Idioma / Language"><a href="./" class="activo" aria-current="page" hreflang="es" lang="es">ES</a><a href="en/" hreflang="en" lang="en">EN</a></nav>
+  <a class="get" href="https://apps.apple.com/app/id6816288775">Descargar</a>
+</header>
 <div class="cinta" aria-hidden="true"><div class="corre">
   <span>Ya en la App Store · versión 1.10</span><span>Nuevo: la despedida y el álbum de retirados</span><span>1ro y 10 · cada down es tuyo</span><span>Muy pronto: la sala de video y la tienda de sobres</span><span>College → Draft → Salón de la Fama</span><span>32 equipos · 53 por roster</span><span>100 logros de Game Center</span><span>Sin anuncios · sin cuenta</span>
   <span>Ya en la App Store · versión 1.10</span><span>Nuevo: la despedida y el álbum de retirados</span><span>1ro y 10 · cada down es tuyo</span><span>Muy pronto: la sala de video y la tienda de sobres</span><span>College → Draft → Salón de la Fama</span><span>32 equipos · 53 por roster</span><span>100 logros de Game Center</span><span>Sin anuncios · sin cuenta</span>
 </div></div>
 
-<nav class="idioma" aria-label="Idioma / Language"><a href="./" class="activo" aria-current="page" hreflang="es" lang="es">ES</a><a href="en/" hreflang="en" lang="en">EN</a></nav>
-<header class="heroe">
-  <video autoplay muted loop playsinline preload="metadata" poster="assets/juego_poster.jpg"><source src="assets/juego.mp4" type="video/mp4"></video>
-  <div class="dentro">
-    <div>
-      <div class="marcador matriz"><h1 class="leds">Pixel<span class="l2">Football</span></h1></div>
-      <div class="lema rotulo">Tu carrera <span class="oro">empieza aquí</span></div>
-      <p>Vive la carrera entera de un quarterback, del college al Salón de la Fama. Aquí no se simula tu ataque: cada down lo juegas tú.</p>
-      <div class="ctas">
-        <a class="boton primario" href="https://apps.apple.com/app/id6816288775">Descárgalo gratis</a>
-        <a class="boton secundario" href="#partido">Míralo jugar</a>
-      </div>
-      <small>iPhone y iPad · En español y en inglés</small>
-    </div>
-    <img class="qb pixel" src="assets/qb.png" alt="El QB de Pixel Football lanzando">
+<section class="heroe"><div class="luz"></div><div class="dentro">
+  <div>
+    <div class="marcador"><div class="leds">Pixel<span class="l2">Football</span></div></div>
+    <div class="tercio"><div class="tag">Tu carrera</div><div class="cuerpo">
+      <h1>Tu carrera <span>empieza aquí</span></h1>
+      <p>La carrera entera de un quarterback, del college al Salón de la Fama. Aquí no se simula tu ataque: cada down lo juegas tú.</p>
+      <div class="ctas"><a class="boton primario" href="https://apps.apple.com/app/id6816288775">Descárgalo gratis</a><a class="boton secundario" href="#partido">Míralo jugar</a></div>
+      <small>iPhone y iPad · En español y en inglés · Sin anuncios ni cuenta</small>
+    </div></div>
   </div>
-  <a class="flecha" href="#partido" aria-label="Bajar">▼</a>
-</header>
-
-<section class="seccion" id="partido">
-  <div class="aparece" style="text-align:center"><span class="etiqueta">El partido</span></div>
-  <h2 class="titulo aparece" style="margin-top:14px">Tú lanzas.<span>Tú lees. Tú decides.</span></h2>
-  <p class="sub aparece">Jala la resortera y suelta. El bolsillo se cierra de verdad, el viento empuja el balón y el sack es físico: si el rusher te toca, se acabó.</p>
-  <div class="telefono aparece">
-    <span class="vivo">En vivo</span>
+  <div class="tele"><div class="marco"><span class="vivo">En vivo</span>
     <video autoplay muted loop playsinline preload="metadata" poster="assets/juego_poster.jpg"><source src="assets/juego.mp4" type="video/mp4"></video>
+  </div></div>
+</div><a class="flecha" href="#partido" aria-label="Bajar">▼</a></section>
+
+<section class="secc" id="partido">
+  <span class="etq aparece">El partido</span>
+  <h2 class="titulo aparece">Tú lanzas.<span>Tú lees. Tú decides.</span></h2>
+  <p class="sub aparece">Jala la resortera y suelta. El bolsillo se cierra de verdad, el viento empuja el balón y el sack es físico: si el rusher te toca, se acabó.</p>
+  <div class="ventanas">
+    <div class="ventana aparece"><img src="assets/pantallas/es/partido.jpg" alt="El balón en el aire" loading="lazy"><div class="rot"><b>Pase</b><span>El balón vuela de verdad</span></div></div>
+    <div class="ventana aparece"><img src="assets/pantallas/es/pov.jpg" alt="La cámara POV" loading="lazy"><div class="rot"><b>POV</b><span>Juega desde el casco</span></div></div>
+    <div class="ventana aparece"><img src="assets/pantallas/es/sack.jpg" alt="El sack" loading="lazy"><div class="rot"><b>Sack</b><span>Si te tocan, se acabó</span></div></div>
+  </div>
+  <div class="stats aparece"><div><b>32</b><span>Clubes</span></div><div><b>18</b><span>Semanas</span></div><div><b>53</b><span>Por roster</span></div><div><b>100</b><span>Logros</span></div><div><b>0</b><span>Anuncios</span></div></div>
+</section>
+
+<section class="secc">
+  <span class="etq aparece">La transmisión</span>
+  <h2 class="titulo aparece">Todo el juego<span>se ve como en la tele</span></h2>
+  <p class="sub aparece">La noche del draft, tu vestidor, el mercado y el Gran Partido, como en una transmisión.</p>
+  <div class="ventanas">
+    <div class="ventana aparece"><img src="assets/pantallas/es/draft.jpg" alt="La noche del draft" loading="lazy"><div class="rot"><b>Draft</b><span>El comisionado canta tu nombre</span></div></div>
+    <div class="ventana aparece"><img src="assets/pantallas/es/vestidor.jpg" alt="Tu vestidor" loading="lazy"><div class="rot"><b>Vestidor</b><span>Tu carrera, semana a semana</span></div></div>
+    <div class="ventana aparece"><img src="assets/pantallas/es/trades.jpg" alt="La mesa de traspasos" loading="lazy"><div class="rot"><b>Trades</b><span>Arma el trade que te falta</span></div></div>
+    <div class="ventana aparece"><img src="assets/pantallas/es/club.jpg" alt="Elige tu club" loading="lazy"><div class="rot"><b>Club</b><span>Elige con quién empiezas</span></div></div>
+    <div class="ventana aparece"><img src="assets/pantallas/es/creador.jpg" alt="Crea a tu QB" loading="lazy"><div class="rot"><b>Tu QB</b><span>Cara, pelo, dorsal y universidad</span></div></div>
+    <div class="ventana aparece"><img src="assets/pantallas/es/campeon.jpg" alt="El año del campeón" loading="lazy"><div class="rot"><b>Anillo</b><span>Lo que el partido promete, cobrado</span></div></div>
   </div>
 </section>
 
-<section style="padding:clamp(40px,6vw,70px) 0">
-  <div class="aparece" style="text-align:center"><span class="etiqueta">Así se ve</span></div>
-  <h2 class="titulo aparece" style="margin-top:14px;padding:0 16px">Todo el juego<span>se viste de tele</span></h2>
-  <p class="sub aparece" style="padding:0 16px">Tu vestidor, tu roster, el despacho y la noche del draft, como en una transmisión.</p>
-  <div class="carril ancho">
-    <figure><img src="assets/tele/02_duelo.jpg" alt="Cada domingo un duelo" loading="lazy"></figure>
-    <figure><img src="assets/tele/03_pase.jpg" alt="Cada pase es tuyo" loading="lazy"></figure>
-    <figure><img src="assets/tele/04_vestidor.jpg" alt="Tu vestidor, tu carrera" loading="lazy"></figure>
-    <figure><img src="assets/tele/05_tu_qb.jpg" alt="Crea a tu QB" loading="lazy"></figure>
-    <figure><img src="assets/tele/06_creador.jpg" alt="Dibuja tus jugadas" loading="lazy"></figure>
-    <figure><img src="assets/tele/07_draft.jpg" alt="Vive la noche del draft" loading="lazy"></figure>
-    <figure><img src="assets/tele/08_roster.jpg" alt="Arma tu equipo" loading="lazy"></figure>
-    <figure><img src="assets/tele/09_despacho.jpg" alt="Manda en el despacho" loading="lazy"></figure>
-    <figure><img src="assets/tele/10_playoffs.jpg" alt="Camino al Gran Partido" loading="lazy"></figure>
-  </div>
-  <div class="mueve"><button type="button" data-dir="-1" aria-label="Anterior">◀</button><button type="button" data-dir="1" aria-label="Siguiente">▶</button></div>
-</section>
-
-<section class="seccion">
-  <div class="aparece" style="text-align:center"><span class="etiqueta">La carrera</span></div>
-  <h2 class="titulo aparece" style="margin-top:14px">De la banca<span>al mando</span></h2>
+<section class="secc">
+  <span class="etq aparece">La carrera</span>
+  <h2 class="titulo aparece">De la banca<span>al mando</span></h2>
   <p class="sub aparece">Llegas como uno más. Juega bien y el coach confía en ti; cuando mandas, el draft, los fichajes y los traspasos son tuyos.</p>
-  <div class="escalera">
-    <div class="escalon aparece"><img src="assets/carrera/1_banca.jpg" alt="Banca" loading="lazy"></div>
-    <div class="escalon aparece"><img src="assets/carrera/2_relevo.jpg" alt="Relevo" loading="lazy"></div>
-    <div class="escalon aparece"><img src="assets/carrera/3_titular.jpg" alt="Titular" loading="lazy"></div>
-    <div class="escalon aparece"><img src="assets/carrera/4_mando.jpg" alt="Mando" loading="lazy"></div>
+  <div class="ventanas cuatro">
+    <div class="ventana aparece"><img src="assets/carrera/1_banca.jpg" alt="Banca" loading="lazy"><div class="rot"><b>1</b><span>Banca</span></div></div>
+    <div class="ventana aparece"><img src="assets/carrera/2_relevo.jpg" alt="Relevo" loading="lazy"><div class="rot"><b>2</b><span>Relevo</span></div></div>
+    <div class="ventana aparece"><img src="assets/carrera/3_titular.jpg" alt="Titular" loading="lazy"><div class="rot"><b>3</b><span>Titular</span></div></div>
+    <div class="ventana aparece"><img src="assets/carrera/4_mando.jpg" alt="Mando" loading="lazy"><div class="rot"><b>4</b><span>Mando</span></div></div>
+  </div>
+</section>
+
+<section class="secc">
+  <span class="etq aparece">Lo nuevo</span>
+  <h2 class="titulo aparece">El juego<span>no deja de crecer</span></h2>
+  <div class="nuevo">
+    <div class="tanda aparece"><h3><span class="etq">1.9</span>Duelo e Infernal</h3><ul>
+      <li><b>Duelo de QB</b><span>La intro parte la pantalla: los dos QB calientan a la vez, cada uno en su mitad.</span></li>
+      <li><b>Estelas del pase</b><span>Veinte estelas para tu lanzamiento, en la repetición y en la tienda.</span></li>
+      <li><b>La ruleta del audible</b><span>Diez rutas en la rueda, en espejo según el lado de tu receptor.</span></li>
+      <li><b>La banda en la pausa</b><span>La energía de cada uno, el reparto de balones y un informe de dónde atacar.</span></li>
+      <li><b>Infernal</b><span>El quinto nivel de dificultad. Después de Leyenda, sólo esto.</span></li>
+      <li><b>Elige tu club</b><span>Antes del draft: al azar o tu club por trade. El que sube por ti te hace titular.</span></li>
+    </ul></div>
+    <div class="tanda aparece"><h3><span class="etq">Ya disponible</span>1.10 · La despedida</h3><ul>
+      <li><b>La despedida</b><span>Al retirarte, el estadio te recibe con tus trofeos y tus anillos.</span></li>
+      <li><b>Los retirados</b><span>Un álbum de cromos guarda los números de cada carrera retirada.</span></li>
+      <li><b>Menos intercepciones</b><span>El defensivo solo ya no roba seguro y el simulado paga lo suyo.</span></li>
+      <li><b>El 99 se separa</b><span>Tu receptor rápido saca ventaja y el rusher corre lo que dice su ficha.</span></li>
+      <li><b>La noche de playoffs</b><span>El bracket marca en dorado tu camino al Gran Partido.</span></li>
+      <li><b>Patrimonio de vitrina</b><span>Tu casa, tus coches y tu yate en grande, cada uno en su escenario.</span></li>
+    </ul></div>
+    <div class="tanda viene aparece"><h3><span class="etq">Muy pronto</span>1.11 · La sala de video</h3><ul>
+      <li><b>La sala de video</b><span>Seis coaches, pizarras y el haz del proyector.</span></li>
+      <li><b>La tienda de sobres</b><span>Sobres de puntos y el paquete de bienvenida de tu primera victoria.</span></li>
+      <li><b>La puerta Playbook</b><span>Tus jugadas y tu playbook, desde el vestidor.</span></li>
+      <li><b>La patada en el playbook</b><span>Despeje o gol de campo se eligen en el playbook; sólo un tiempo fuera lo deshace.</span></li>
+      <li><b>Tercera y larga de verdad</b><span>Se juega en el partido: tus 11 contra 11 y cinco primeros de diez.</span></li>
+      <li><b>Audible calling en el camp</b><span>Jugada al azar, cinco zonas y la ruleta del audible.</span></li>
+    </ul></div>
   </div>
 </section>
 
 <section style="padding:clamp(40px,6vw,70px) 0">
-  <div class="aparece" style="text-align:center"><span class="etiqueta">El libro de jugadas</span></div>
-  <h2 class="titulo aparece" style="margin-top:14px;padding:0 16px">Nueve jugadas<span>para entenderlo</span></h2>
+  <div class="secc" style="padding-top:0;padding-bottom:0"><span class="etq aparece">El libro de jugadas</span>
+  <h2 class="titulo aparece">Nueve jugadas<span>para entenderlo</span></h2></div>
   <div class="carril" id="carril">
     <figure><img src="assets/jugadas/1_cada_down.jpg" alt="Jugada 01: cada down es tuyo" loading="lazy"></figure>
     <figure><img src="assets/jugadas/2_mando.jpg" alt="Jugada 02: gánate el mando" loading="lazy"></figure>
@@ -212,55 +256,10 @@ footer a{color:var(--texto);text-decoration:none}footer a:hover{color:var(--oro)
   <div class="mueve"><button type="button" data-dir="-1" aria-label="Anterior">◀</button><button type="button" data-dir="1" aria-label="Siguiente">▶</button></div>
 </section>
 
-<section class="seccion">
-  <div class="aparece" style="text-align:center"><span class="etiqueta">Lo nuevo</span></div>
-  <h2 class="titulo aparece" style="margin-top:14px">El juego<span>no deja de crecer</span></h2>
-  <div class="nuevo">
-    <div class="tanda aparece"><h3><span class="etiqueta">1.9</span>Duelo e Infernal</h3><ul>
-      <li><b>Duelo de QB</b><span>La intro parte la pantalla: los dos QB calientan a la vez, cada uno en su mitad.</span></li>
-      <li><b>Estelas del pase</b><span>Veinte estelas para tu lanzamiento, en la repetición y en la tienda.</span></li>
-      <li><b>La ruleta del audible</b><span>Diez rutas en la rueda, en espejo según el lado de tu receptor.</span></li>
-      <li><b>La banda en la pausa</b><span>La energía de cada uno, el reparto de balones y un informe de dónde atacar.</span></li>
-      <li><b>Infernal</b><span>El quinto nivel de dificultad. Después de Leyenda, sólo esto.</span></li>
-      <li><b>Elige tu club</b><span>Antes del draft: al azar o tu club por trade. El que sube por ti te hace titular.</span></li>
-    </ul></div>
-    <div class="tanda aparece"><h3><span class="etiqueta">Ya disponible</span>1.10 · La despedida</h3><ul>
-      <li><b>La despedida</b><span>Al retirarte, el estadio te recibe con tus trofeos y tus anillos.</span></li>
-      <li><b>Los retirados</b><span>Un álbum de cromos guarda los números de cada carrera retirada.</span></li>
-      <li><b>Menos intercepciones</b><span>El defensivo solo ya no roba seguro y el simulado paga lo suyo.</span></li>
-      <li><b>El 99 se separa</b><span>Tu receptor rápido saca ventaja y el rusher corre lo que dice su ficha.</span></li>
-      <li><b>La noche de playoffs</b><span>El bracket marca en dorado tu camino al Gran Partido.</span></li>
-      <li><b>Patrimonio de vitrina</b><span>Tu casa, tus coches y tu yate en grande, cada uno en su escenario.</span></li>
-    </ul></div>
-    <div class="tanda viene aparece"><h3><span class="etiqueta">Muy pronto</span>1.11 · La sala de video</h3><ul>
-      <li><b>La sala de video</b><span>Seis coaches, pizarras y el haz del proyector.</span></li>
-      <li><b>La tienda de sobres</b><span>Sobres de puntos y el paquete de bienvenida de tu primera victoria.</span></li>
-      <li><b>La puerta Playbook</b><span>Tus jugadas y tu playbook, desde el vestidor.</span></li>
-      <li><b>La patada en el playbook</b><span>Despeje o gol de campo se eligen en el playbook; sólo un tiempo fuera lo deshace.</span></li>
-      <li><b>Tercera y larga de verdad</b><span>Se juega en el partido: tus 11 contra 11 y cinco primeros de diez.</span></li>
-      <li><b>Audible calling en el camp</b><span>Jugada al azar, cinco zonas y la ruleta del audible.</span></li>
-    </ul></div>
-  </div>
-</section>
-
-<section class="seccion">
-  <h2 class="titulo aparece">Una liga entera<span>que no para</span></h2>
-  <div class="rasgos">
-    <div class="rasgo aparece"><div class="num">32</div><h3>Equipos vivos</h3><p>Cada club con su estadio, su caja, su nómina y sus 53 jugadores medidos en la cancha.</p></div>
-    <div class="rasgo aparece"><div class="num">18</div><h3>Semanas y playoffs</h3><p>Temporada con descanso, la carrera por los playoffs y El Gran Partido.</p></div>
-    <div class="rasgo aparece"><div class="num">3</div><h3>Rondas de draft</h3><p>Más agentes libres, traspasos, waivers y un mercado que se mueve aunque no mires.</p></div>
-    <div class="rasgo aparece"><div class="num">✎</div><h3>Tu propio libro</h3><p>Dibuja tus rutas con el dedo y llámalas en el partido como cualquier otra jugada.</p></div>
-    <div class="rasgo aparece"><div class="num">100</div><h3>Logros</h3><p>En Game Center, del primer touchdown al dorsal retirado. Y 182 rankings.</p></div>
-    <div class="rasgo aparece"><div class="num">10</div><h3>Pruebas del combine</h3><p>Tu tutorial es la Academia: tu nota en el combine mueve tu pick en el draft.</p></div>
-    <div class="rasgo aparece"><div class="num">14</div><h3>Rostros para tu QB</h3><p>Con 20 tintes de pelo, tu peinado, tu dorsal y tu universidad.</p></div>
-    <div class="rasgo aparece"><div class="num">0</div><h3>Anuncios</h3><p>Sin cuenta, sin anuncios y sin rastreo. La partida vive en tu teléfono.</p></div>
-  </div>
-</section>
-
 <section class="vitrina">
-  <div class="seccion cierre">
-    <div class="aparece"><span class="etiqueta">La vitrina</span></div>
-    <h2 class="titulo aparece" style="margin-top:14px">¿Cuántos anillos<span>caben en tu carrera?</span></h2>
+  <div class="secc">
+    <span class="etq aparece">La vitrina</span>
+    <h2 class="titulo aparece">¿Cuántos anillos<span>caben en tu carrera?</span></h2>
     <div class="anillos">
       <img class="pixel" src="assets/anillo_1.png" alt="Anillo de campeón" loading="lazy">
       <img class="pixel" src="assets/anillo_2.png" alt="Anillo de campeón" loading="lazy">
@@ -290,7 +289,7 @@ footer a{color:var(--texto);text-decoration:none}footer a:hover{color:var(--oro)
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visto');io.unobserve(e.target)}})},{threshold:.12});
   els.forEach(function(e){io.observe(e)});
 })();
-// Los videos sólo corren cuando se ven (y arrancan aunque el navegador no los haya lanzado solo).
+// El video sólo corre cuando se ve (y arranca aunque el navegador no lo haya lanzado solo).
 (function(){
   var vs=document.querySelectorAll('video');
   if(!('IntersectionObserver' in window))return;
@@ -299,7 +298,7 @@ footer a{color:var(--texto);text-decoration:none}footer a:hover{color:var(--oro)
   })},{threshold:.2});
   vs.forEach(function(v){io.observe(v)});
 })();
-// Las flechas de cada carril (el de la tele y el de jugadas): cada par mueve el carril que tiene encima.
+// Las flechas del carril de jugadas.
 (function(){
   document.querySelectorAll('.mueve').forEach(function(m){
     var c=m.previousElementSibling;
