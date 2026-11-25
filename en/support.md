@@ -1,7 +1,7 @@
 ---
 lang: en
 ---
-[Español](../soporte) · **English**
+[Español](../soporte) · **English** · [Português](../pt/support)
 
 # Support · Pixel Football
 

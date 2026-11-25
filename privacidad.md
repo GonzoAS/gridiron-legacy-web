@@ -1,4 +1,4 @@
-**Español** · [English](en/privacy)
+**Español** · [English](en/privacy) · [Português](pt/privacy)
 
 # Política de privacidad · Pixel Football
 

@@ -1,7 +1,7 @@
 ---
 lang: en
 ---
-[Español](../privacidad) · **English**
+[Español](../privacidad) · **English** · [Português](../pt/privacy)
 
 # Privacy policy · Pixel Football
 

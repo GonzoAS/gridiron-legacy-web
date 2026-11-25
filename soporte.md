@@ -1,4 +1,4 @@
-**Español** · [English](en/support)
+**Español** · [English](en/support) · [Português](pt/support)
 
 # Soporte · Pixel Football
 

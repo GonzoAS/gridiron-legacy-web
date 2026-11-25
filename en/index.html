@@ -17,6 +17,7 @@
 <link rel="preload" href="../assets/ChakraPetch-Bold.ttf" as="font" type="font/ttf" crossorigin>
 <link rel="alternate" hreflang="es" href="https://gonzoas.github.io/gridiron-legacy-web/">
 <link rel="alternate" hreflang="en" href="https://gonzoas.github.io/gridiron-legacy-web/en/">
+<link rel="alternate" hreflang="pt-BR" href="https://gonzoas.github.io/gridiron-legacy-web/pt/">
 <link rel="alternate" hreflang="x-default" href="https://gonzoas.github.io/gridiron-legacy-web/">
 <link rel="stylesheet" href="../assets/estilo.css">
 <style>
@@ -96,7 +97,7 @@ body{overflow-x:hidden;background:var(--bg)}
 .nuevo{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;margin-top:40px}
 .tanda{background:#0b0f1c;border:2px solid var(--edge);border-radius:12px;overflow:hidden}
 .tanda h3{display:flex;align-items:center;gap:12px;background:var(--panel);border-bottom:2px solid var(--edge);padding:12px 18px;font-size:20px;text-transform:uppercase}
-.tanda h3 .etq{font-size:12px}
+.tanda h3 .etq{font-size:12px;white-space:nowrap}
 .tanda.viene h3 .etq{background:transparent;color:var(--oro);border:2px solid var(--oro)}
 .tanda ul{list-style:none;display:grid;gap:12px;padding:18px}
 .tanda li b{display:block;text-transform:uppercase;letter-spacing:.04em;font-size:15px}
@@ -133,26 +134,29 @@ footer a{color:var(--texto);text-decoration:none}footer a:hover{color:var(--oro)
   .tercio{max-width:none}
   .ventanas,.ventanas.dos{grid-template-columns:1fr}
   .ventanas.cuatro{grid-template-columns:repeat(2,1fr);gap:12px}
-  .stats{flex-wrap:wrap}.stats div{flex:1 1 33%;border-bottom:1px solid var(--edge)}
+  .stats{flex-wrap:wrap}.stats b{font-size:30px}.stats div{flex:1 1 33%;border-bottom:1px solid var(--edge)}
   .flecha{display:none}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
   .aparece{opacity:1;transform:none}
 }
+.diez{display:block;color:var(--oro);font-size:16px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
+/* Con tres idiomas la marca ya no cabe en el teléfono: se queda el casco. */
+@media(max-width:480px){.bug>a:first-child{font-size:0;gap:0}}
 </style>
 </head>
 <body>
 <header class="bug">
   <a href="./"><img src="../assets/icono.png" alt="">Pixel Football</a>
   <div class="oculta"><span class="rojo">Live</span>1st &amp; 10</div>
-  <div class="oculta">Out now on the App Store · 1.10</div>
-  <nav class="idioma" aria-label="Idioma / Language"><a href="../" hreflang="es" lang="es">ES</a><a href="./" class="activo" aria-current="page" hreflang="en" lang="en">EN</a></nav>
+  <div class="oculta">Out now on the App Store · 1.15</div>
+  <nav class="idioma" aria-label="Idioma / Language"><a href="../" hreflang="es" lang="es">ES</a><a href="./" class="activo" aria-current="page" hreflang="en" lang="en">EN</a><a href="../pt/" hreflang="pt-BR" lang="pt-BR">PT</a></nav>
   <a class="get" href="https://apps.apple.com/app/id6816288775">Download</a>
 </header>
 <div class="cinta" aria-hidden="true"><div class="corre">
-  <span>Out now on the App Store · version 1.10</span><span>New: the farewell and the retired album</span><span>1st &amp; 10 · every down is yours</span><span>Coming soon: the film room and the pack shop</span><span>College → Draft → Hall of Fame</span><span>32 teams · 53-man rosters</span><span>100 Game Center achievements</span><span>No ads · no account</span>
-  <span>Out now on the App Store · version 1.10</span><span>New: the farewell and the retired album</span><span>1st &amp; 10 · every down is yours</span><span>Coming soon: the film room and the pack shop</span><span>College → Draft → Hall of Fame</span><span>32 teams · 53-man rosters</span><span>100 Game Center achievements</span><span>No ads · no account</span>
+  <span>Out now on the App Store · version 1.15</span><span>10K+ downloads on iOS</span><span>On Android November 29</span><span>New: dilemmas and touch passing</span><span>1st &amp; 10 · every down is yours</span><span>Edit all 32 teams</span><span>College → Draft → Hall of Fame</span><span>Preseason, a five-round draft and the Big Game</span><span>32 teams · 53-man rosters</span><span>100 Game Center achievements</span><span>No ads · no account</span><span>Coming soon: save mid-game</span>
+  <span>Out now on the App Store · version 1.15</span><span>10K+ downloads on iOS</span><span>On Android November 29</span><span>New: dilemmas and touch passing</span><span>1st &amp; 10 · every down is yours</span><span>Edit all 32 teams</span><span>College → Draft → Hall of Fame</span><span>Preseason, a five-round draft and the Big Game</span><span>32 teams · 53-man rosters</span><span>100 Game Center achievements</span><span>No ads · no account</span><span>Coming soon: save mid-game</span>
 </div></div>
 
 <section class="heroe"><div class="luz"></div><div class="dentro">
@@ -162,7 +166,7 @@ footer a{color:var(--texto);text-decoration:none}footer a:hover{color:var(--oro)
       <h1>Your career <span>starts here</span></h1>
       <p>A quarterback's whole career, from college to the Hall of Fame. Your offense is never simulated: you play every down.</p>
       <div class="ctas"><a class="boton primario" href="https://apps.apple.com/app/id6816288775">Download free</a><a class="boton secundario" href="#partido">Watch it play</a></div>
-      <small>iPhone and iPad · In English and Spanish · No ads, no account</small>
+      <small><b class="diez">10K+ downloads on iOS</b>iPhone and iPad · Android on November 29 · In English and Spanish · No ads, no account</small>
     </div></div>
   </div>
   <div class="tele"><div class="marco"><span class="vivo">Live</span>
@@ -173,13 +177,13 @@ footer a{color:var(--texto);text-decoration:none}footer a:hover{color:var(--oro)
 <section class="secc" id="partido">
   <span class="etq aparece">The game</span>
   <h2 class="titulo aparece">You throw.<span>You read. You decide.</span></h2>
-  <p class="sub aparece">Pull the slingshot and let go. The pocket really collapses, the wind pushes the ball and the sack is physical: if the rusher touches you, it's over.</p>
+  <p class="sub aparece">Pull the slingshot and let go, or tap your receiver. The pocket really collapses, the wind pushes the ball and the sack is physical: if the rusher touches you, it's over.</p>
   <div class="ventanas">
     <div class="ventana aparece"><img src="../assets/pantallas/en/partido.jpg" alt="The ball in the air" loading="lazy"><div class="rot"><b>Pass</b><span>The ball really flies</span></div></div>
     <div class="ventana aparece"><img src="../assets/pantallas/en/pov.jpg" alt="The POV camera" loading="lazy"><div class="rot"><b>POV</b><span>Play from inside the helmet</span></div></div>
     <div class="ventana aparece"><img src="../assets/pantallas/en/sack.jpg" alt="The sack" loading="lazy"><div class="rot"><b>Sack</b><span>One touch and it's over</span></div></div>
   </div>
-  <div class="stats aparece"><div><b>32</b><span>Clubs</span></div><div><b>18</b><span>Weeks</span></div><div><b>53</b><span>Per roster</span></div><div><b>100</b><span>Achievements</span></div><div><b>0</b><span>Ads</span></div></div>
+  <div class="stats aparece"><div><b>10K+</b><span>iOS downloads</span></div><div><b>32</b><span>Clubs</span></div><div><b>18</b><span>Weeks</span></div><div><b>53</b><span>Per roster</span></div><div><b>100</b><span>Achievements</span></div><div><b>0</b><span>Ads</span></div></div>
 </section>
 
 <section class="secc">
@@ -209,9 +213,55 @@ footer a{color:var(--texto);text-decoration:none}footer a:hover{color:var(--oro)
 </section>
 
 <section class="secc">
+  <span class="etq aparece">New season</span>
+  <h2 class="titulo aparece">More career,<span>more yours</span></h2>
+  <p class="sub aparece">Three games before week 1, an agent on the phone, dilemmas that pay off later and 32 teams to dress your way.</p>
+  <div class="ventanas">
+    <div class="ventana aparece"><img src="../assets/pantallas/en/toque.jpg" alt="Touch passing" loading="lazy"><div class="rot"><b>Tap</b><span>Tap your receiver and the ball is gone</span></div></div>
+    <div class="ventana aparece"><img src="../assets/pantallas/en/editor.jpg" alt="The team editor" loading="lazy"><div class="rot"><b>Editor</b><span>Your name, your tag, your colors</span></div></div>
+    <div class="ventana aparece"><img src="../assets/pantallas/en/pretemporada.jpg" alt="The preseason" loading="lazy"><div class="rot"><b>Preseason</b><span>Three games before week 1</span></div></div>
+    <div class="ventana aparece"><img src="../assets/pantallas/en/dilema.jpg" alt="The dilemmas" loading="lazy"><div class="rot"><b>Dilemma</b><span>Your answers pay off later</span></div></div>
+    <div class="ventana aparece"><img src="../assets/pantallas/en/sobres.jpg" alt="Player packs" loading="lazy"><div class="rot"><b>Packs</b><span>Three free agents, you pick one</span></div></div>
+    <div class="ventana aparece"><img src="../assets/pantallas/en/agente.jpg" alt="Your agent" loading="lazy"><div class="rot"><b>Agent</b><span>Calls you every week</span></div></div>
+  </div>
+</section>
+
+<section class="secc">
   <span class="etq aparece">What's new</span>
   <h2 class="titulo aparece">The game<span>keeps growing</span></h2>
   <div class="nuevo">
+    <div class="tanda aparece"><h3><span class="etq">Out now</span>1.15 · Dilemmas</h3><ul>
+      <li><b>Dilemmas and interviews</b><span>Your answers pay off weeks later.</span></li>
+      <li><b>Touch passing</b><span>TAP: the ball goes to the route. TAP PRO: you are in charge. With an Academy tutorial.</span></li>
+      <li><b>A leather ball</b><span>Catches go into the receiver's hands.</span></li>
+      <li><b>Three-tap kicking</b><span>HUT!, stop the aim, then tap again for power.</span></li>
+      <li><b>Tiered upgrades</b><span>Upgrading a teammate costs the same as your QB.</span></li>
+      <li><b>Teammates as trading cards</b><span>A card for every profile, and you sort the RB, WR and TE bench by hand.</span></li>
+    </ul></div>
+    <div class="tanda aparece"><h3><span class="etq">1.13 · 1.14</span>A living QB</h3><ul>
+      <li><b>The team editor</b><span>Name, tag and colors for all 32 teams. One-time purchase.</span></li>
+      <li><b>The preseason</b><span>Three games to win over your coach and master the playbook.</span></li>
+      <li><b>Receivers fake</b><span>They sell the wrong way and the defender can bite.</span></li>
+      <li><b>Your agent calls</b><span>Appearances, boosts and clauses every week.</span></li>
+      <li><b>The draft as TV</b><span>Five rounds, with the room and the clock up top.</span></li>
+      <li><b>Discord and Instagram</b><span>The community, one tap from the career menu.</span></li>
+    </ul></div>
+    <div class="tanda aparece"><h3><span class="etq">1.11 · 1.12</span>A real market</h3><ul>
+      <li><b>No longer a shop</b><span>A starter rated 80+ costs you a player or a pick.</span></li>
+      <li><b>Untouchables</b><span>Each club's best player is not for sale in season.</span></li>
+      <li><b>The film room</b><span>Six coaches, chalkboards and the projector beam.</span></li>
+      <li><b>The Playbook door</b><span>Your plays and your playbook, right from the locker room.</span></li>
+      <li><b>The kick in the playbook</b><span>Only a timeout undoes your call.</span></li>
+      <li><b>The neon chalkboard</b><span>The narrated drive with all 22, who made it and who ended it.</span></li>
+    </ul></div>
+    <div class="tanda aparece"><h3><span class="etq">1.10</span>The farewell</h3><ul>
+      <li><b>The farewell</b><span>When you retire, the stadium welcomes you with your trophies and rings.</span></li>
+      <li><b>The retired album</b><span>A card album keeps the numbers of every retired career.</span></li>
+      <li><b>Fewer interceptions</b><span>A lone defender no longer picks it off for sure, and simmed games pay their share.</span></li>
+      <li><b>The 99 gets open</b><span>Your fast receiver gets separation and the rusher runs at his real speed.</span></li>
+      <li><b>Playoff night</b><span>The bracket marks your road to the Big Game in gold.</span></li>
+      <li><b>Your showcase</b><span>Your house, cars and yacht up close, each on its own stage.</span></li>
+    </ul></div>
     <div class="tanda aparece"><h3><span class="etq">1.9</span>The duel and Infernal</h3><ul>
       <li><b>The QB duel</b><span>The intro splits the screen: both QBs warm up at once, each on his own half.</span></li>
       <li><b>Pass trails</b><span>Twenty trails for your throw, in the replay and in the shop.</span></li>
@@ -220,21 +270,13 @@ footer a{color:var(--texto);text-decoration:none}footer a:hover{color:var(--oro)
       <li><b>Infernal</b><span>The fifth difficulty level. After Legend, there's only this.</span></li>
       <li><b>Pick your team</b><span>Before the draft: leave it to chance or trade into your team. The club that moves up for you makes you a starter.</span></li>
     </ul></div>
-    <div class="tanda aparece"><h3><span class="etq">Out now</span>1.10 · The farewell</h3><ul>
-      <li><b>The farewell</b><span>When you retire, the stadium welcomes you with your trophies and rings.</span></li>
-      <li><b>The retired album</b><span>A card album keeps the numbers of every retired career.</span></li>
-      <li><b>Fewer interceptions</b><span>A lone defender no longer picks it off for sure, and simmed games pay their share.</span></li>
-      <li><b>The 99 gets open</b><span>Your fast receiver gets separation and the rusher runs at his real speed.</span></li>
-      <li><b>Playoff night</b><span>The bracket marks your road to the Big Game in gold.</span></li>
-      <li><b>Your showcase</b><span>Your house, cars and yacht up close, each on its own stage.</span></li>
-    </ul></div>
-    <div class="tanda viene aparece"><h3><span class="etq">Coming soon</span>1.11 · The film room</h3><ul>
-      <li><b>The film room</b><span>Six coaches, chalkboards and the projector beam.</span></li>
-      <li><b>The pack shop</b><span>Point packs and the welcome pack after your first win.</span></li>
-      <li><b>The Playbook door</b><span>Your plays and your playbook, right from the locker room.</span></li>
-      <li><b>The kick in the playbook</b><span>Punt or field goal is picked in the playbook; only a timeout undoes it.</span></li>
-      <li><b>Real third and long</b><span>Played in the game: your 11 on 11 and five first downs out of ten.</span></li>
-      <li><b>Audible calling in camp</b><span>A random play, five zones and the audible wheel.</span></li>
+    <div class="tanda viene aparece"><h3><span class="etq">Coming soon</span>1.16 · Celebrations</h3><ul>
+      <li><b>Your celebrations</b><span>Build your rotation of three, for two players too.</span></li>
+      <li><b>Save mid-game</b><span>Pick up right where you left off.</span></li>
+      <li><b>A smoother game</b><span>Starts without hitches and runs lighter.</span></li>
+      <li><b>The defense disguises</b><span>The rival hides its front before the snap.</span></li>
+      <li><b>Two-tap kicking</b><span>HUT! freezes the power and another tap kicks.</span></li>
+      <li><b>In Portuguese</b><span>The whole game in Brazilian Portuguese.</span></li>
     </ul></div>
   </div>
 </section>
@@ -274,6 +316,7 @@ footer a{color:var(--texto);text-decoration:none}footer a:hover{color:var(--oro)
   <nav>
     <a href="https://apps.apple.com/app/id6816288775">App Store</a>
     <a href="https://www.instagram.com/pixelfootballapp/">Instagram</a>
+    <a href="https://discord.gg/9w96fRmy9">Discord</a>
     <a href="links/">Links</a>
     <a href="support">Support</a>
     <a href="privacy">Privacy</a>
