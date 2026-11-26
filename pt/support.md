@@ -21,8 +21,9 @@ Respondemos em dias, não em semanas.
 
 ## Perguntas frequentes
 
-**Onde fica salvo meu progresso?** Só no seu celular. Se você apagar o app, o
-progresso se apaga. Não há nuvem nem conta.
+**Onde fica salvo meu progresso?** No seu celular, com uma cópia na nuvem para
+você não perder. Não há conta: se trocar de celular, você recupera com seu
+código (menu de carreiras → Ajustes → Cópia na nuvem).
 
 **Comprei um pacote e não chegou.** Feche e abra o jogo: as compras pendentes são
 creditadas ao iniciar. Se ainda não aparecer, escreva com o recibo da Apple ou do

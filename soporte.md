@@ -18,8 +18,9 @@ Contestamos en días, no en semanas.
 
 ## Preguntas frecuentes
 
-**¿Dónde se guarda mi partida?** Sólo en tu teléfono. Si borras la app, se
-borra la partida. No hay nube ni cuenta.
+**¿Dónde se guarda mi partida?** En tu teléfono, con una copia en la nube para
+que no la pierdas. No hay cuenta: si cambias de teléfono, la recuperas con tu
+código (menú de carreras → Ajustes → Copia en la nube).
 
 **Compré un paquete y no me llegó.** Cierra y abre el juego: las compras
 pendientes se acreditan al arrancar. Si sigue sin aparecer, escríbenos con el

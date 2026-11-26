@@ -22,8 +22,9 @@ We answer in days, not weeks.
 
 ## Frequently asked questions
 
-**Where is my save stored?** Only on your phone. If you delete the app, the
-save is deleted too. There is no cloud and no account.
+**Where is my save stored?** On your phone, with a cloud backup so you never
+lose it. There is no account: if you change phones, you restore it with your
+code (career menu → Settings → Cloud backup).
 
 **I bought a pack and didn't get it.** Close and reopen the game: pending
 purchases are credited on launch. If it still doesn't show up, write to us with
