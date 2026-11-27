@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Pixel Restaurant · Your restaurant, your way</title>
+<meta name="description" content="Open your restaurant, build a menu from cuisines around the world and earn all three Pixel Guide stars. No ads, no accounts. For iPhone and iPad.">
+<meta property="og:title" content="Pixel Restaurant · Your restaurant, your way">
+<meta property="og:description" content="Open your restaurant, build a menu from cuisines around the world and earn all three Pixel Guide stars. No ads, no accounts. For iPhone and iPad.">
+<meta property="og:image" content="https://gonzoas.github.io/gridiron-legacy-web/restaurant/assets/og.jpg">
+<meta property="og:url" content="https://gonzoas.github.io/gridiron-legacy-web/restaurant/en/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b1020">
+<link rel="icon" href="../assets/icono.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="preload" href="../assets/Fredoka.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="alternate" hreflang="es" href="https://gonzoas.github.io/gridiron-legacy-web/restaurant/">
+<link rel="alternate" hreflang="en" href="https://gonzoas.github.io/gridiron-legacy-web/restaurant/en/">
+<link rel="alternate" hreflang="x-default" href="https://gonzoas.github.io/gridiron-legacy-web/restaurant/">
+<style>
+@font-face{font-family:"Fredoka";src:url("../assets/Fredoka.ttf");font-weight:300 700;font-display:swap}
+:root{--crema:#fdf0c8;--crema2:#f6dc8e;--papel:#fffaf0;--oro:#e8b23a;--oro2:#a8741c;--tinta:#0b1020;--dim:#5d6477;--rojo:#d6332d;--verde:#2f8a55;--borde:#ead9a8}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--crema);scroll-behavior:smooth}
+body{font-family:"Fredoka",system-ui,sans-serif;font-weight:500;color:var(--tinta);background:var(--crema);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+img,video{display:block;max-width:100%}
+.pixel{image-rendering:pixelated;image-rendering:crisp-edges}
+
+/* EL LETRERO: la cabecera fija, como la barra de arriba del juego. */
+.letrero{position:fixed;top:0;left:0;right:0;z-index:30;height:56px;display:flex;align-items:center;gap:10px;padding:0 12px;background:var(--tinta);border-bottom:4px solid var(--oro);color:#fff}
+.letrero .marca{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;text-decoration:none;white-space:nowrap}
+.letrero .marca img{width:34px;height:34px;border-radius:9px}
+.letrero .pastilla{display:flex;align-items:center;gap:8px;padding:5px 12px;border-radius:999px;background:#ffffff1a;font-size:13px;font-weight:600;white-space:nowrap}
+.letrero .pastilla i{width:9px;height:9px;border-radius:50%;background:#5fd08a;box-shadow:0 0 0 4px #5fd08a33}
+.letrero .idioma{margin-left:auto;display:flex;border-radius:999px;overflow:hidden;background:#ffffff1a;font-size:13px;font-weight:700}
+.letrero .idioma a{padding:7px 12px;text-decoration:none;color:#ffffffb0}
+.letrero .idioma a.activo{background:#fff;color:var(--tinta)}
+.letrero .get{padding:9px 18px;border-radius:999px;background:var(--oro);color:var(--tinta);font-weight:700;text-decoration:none;box-shadow:0 3px 0 var(--oro2);white-space:nowrap}
+/* LA CINTA DE COMANDAS: corre bajo el letrero. */
+.cinta{position:fixed;top:56px;left:0;right:0;z-index:29;height:32px;overflow:hidden;background:var(--papel);border-bottom:2px dashed var(--borde);display:flex;align-items:center}
+.cinta .corre{display:flex;gap:40px;white-space:nowrap;animation:corre 46s linear infinite;padding-left:40px;font-weight:600;font-size:13px;color:var(--dim)}
+.cinta .corre span::before{content:"★";color:var(--rojo);margin-right:10px;font-size:11px}
+@keyframes corre{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.cinta .corre,.carta .fila{animation:none}}
+
+.boton{display:inline-flex;align-items:center;justify-content:center;min-height:58px;padding:14px 28px;border-radius:18px;font-weight:700;font-size:18px;text-decoration:none;transition:transform .12s ease}
+.boton:active{transform:translateY(3px)}
+.boton.primario{background:var(--oro);color:var(--tinta);box-shadow:0 5px 0 var(--oro2),0 14px 30px #e8b23a55}
+.boton.secundario{background:#fff;color:var(--tinta);border:3px solid var(--borde);box-shadow:0 5px 0 var(--borde)}
+
+/* EL HÉROE: el título a la izquierda y el juego corriendo en un teléfono. */
+.heroe{position:relative;padding:calc(88px + clamp(28px,6vw,70px)) 20px clamp(40px,7vw,80px);background:radial-gradient(1200px 600px at 80% 10%,#ffe08a 0,#ffd866 30%,transparent 70%),linear-gradient(#fdf0c8,#f6dc8e)}
+.heroe .dentro{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,5vw,60px);align-items:center}
+.tag{display:inline-block;padding:6px 14px;border-radius:999px;background:var(--tinta);color:#fff;font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+h1{font-size:clamp(44px,8.4vw,92px);line-height:.98;font-weight:700;margin:16px 0 18px;letter-spacing:-.01em}
+h1 span{display:block;color:var(--rojo)}
+.heroe p{font-size:clamp(18px,2.2vw,22px);color:#2a2f40;max-width:30em}
+.ctas{display:flex;flex-wrap:wrap;gap:14px;margin:26px 0 16px}
+.heroe small{display:block;color:var(--dim);font-size:14px;font-weight:500}
+.tel{justify-self:center;width:min(300px,72vw);padding:9px;border-radius:38px;background:var(--tinta);box-shadow:0 30px 60px #0b102055,0 0 0 2px #ffffff40 inset;transform:rotate(2.5deg)}
+.tel video,.tel img{width:100%;aspect-ratio:6/13;object-fit:cover;border-radius:30px;background:#cfe9b5}
+
+.secc{max-width:1080px;margin:0 auto;padding:clamp(54px,8vw,96px) 20px}
+.etq{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--oro2)}
+.etq::before{content:"";width:22px;height:4px;border-radius:2px;background:var(--oro)}
+h2{font-size:clamp(34px,5.6vw,60px);line-height:1.02;font-weight:700;margin:10px 0 14px}
+h2 span{display:block;color:var(--rojo)}
+.sub{font-size:clamp(17px,2vw,20px);color:#2a2f40;max-width:34em}
+.pantallas{display:grid;grid-template-columns:repeat(3,minmax(0,264px));justify-content:space-between;gap:clamp(14px,3vw,28px);margin-top:36px}
+.pantalla{background:#fff;border:3px solid var(--borde);border-radius:26px;padding:10px 10px 14px;box-shadow:0 8px 0 var(--borde)}
+.pantalla img{width:100%;aspect-ratio:6/13;object-fit:cover;object-position:top;border-radius:18px}
+.pantalla b{display:block;margin-top:12px;font-size:19px;font-weight:700}
+.pantalla span{display:block;color:var(--dim);font-size:15px;line-height:1.3}
+.stats{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:40px}
+.stats div{background:var(--tinta);color:#fff;border-radius:18px;padding:16px 8px;text-align:center}
+.stats b{display:block;font-size:clamp(26px,4vw,40px);line-height:1;color:var(--oro)}
+.stats span{font-size:13px;font-weight:600;color:#ffffffb8}
+.blanca{background:var(--papel);border-top:2px dashed var(--borde);border-bottom:2px dashed var(--borde)}
+.dos{display:grid;grid-template-columns:1fr minmax(0,300px);gap:clamp(24px,5vw,64px);align-items:center}
+.dos ul{list-style:none;margin-top:22px;display:grid;gap:10px}
+.dos li{display:flex;gap:12px;align-items:flex-start;font-size:18px;font-weight:600}
+.dos li::before{content:"✓";flex:none;width:28px;height:28px;border-radius:9px;background:var(--verde);color:#fff;display:grid;place-items:center;font-size:16px}
+/* LA GUÍA: la sección de noche, con las estrellas rojas. */
+.guia{background:var(--tinta);color:#fff}
+.guia .sub{color:#ffffffc8}.guia .etq{color:var(--oro)}
+.guia h2 span{color:#ff5a52}
+.estrellas{font-size:clamp(44px,8vw,84px);line-height:1;color:#ff3b33;letter-spacing:.08em;text-shadow:0 0 30px #ff3b3366}
+.guia .pantallas{grid-template-columns:repeat(2,minmax(0,264px));justify-content:start}
+.guia .pantalla{background:#161d33;border-color:#2a3550;box-shadow:0 8px 0 #060912}
+.guia .pantalla span{color:#ffffff9c}
+/* LA CARTA: los platillos en pixel art, corriendo en dos filas. */
+.carta{overflow:hidden;padding:26px 0 0}
+.carta .fila{display:flex;gap:22px;width:max-content;animation:corre 60s linear infinite;margin-bottom:22px}
+.carta .fila.b{animation-direction:reverse;animation-duration:70s}
+.carta .plato{width:96px;height:96px;flex:none;border-radius:50%;background:#fff;border:3px solid var(--borde);box-shadow:0 5px 0 var(--borde);display:grid;place-items:center}
+.carta .plato img{width:64px;height:64px}
+.fin{text-align:center;padding:clamp(60px,9vw,110px) 20px;background:linear-gradient(#f6dc8e,#f2a93b)}
+.fin img{width:112px;height:112px;border-radius:26px;margin:0 auto 22px;box-shadow:0 12px 30px #0b102040}
+.fin h2{margin-bottom:8px}.fin p{font-size:19px;margin-bottom:26px;color:#2a2f40}
+footer{background:var(--tinta);color:#ffffffa8;text-align:center;padding:34px 20px 44px;font-size:14px}
+footer nav{display:flex;flex-wrap:wrap;gap:8px 22px;justify-content:center;margin-bottom:14px}
+footer a{color:#fff;font-weight:600;text-decoration:none}
+footer a:hover{color:var(--oro)}
+.aparece{opacity:0;transform:translateY(18px);transition:opacity .5s ease,transform .5s ease}
+.aparece.visto{opacity:1;transform:none}
+@media (max-width:820px){
+  .heroe .dentro{grid-template-columns:1fr;text-align:center}
+  .heroe p{margin:0 auto}.ctas{justify-content:center}
+  .tel{transform:none;margin-top:10px}
+  .pantallas{grid-template-columns:repeat(3,58vw);justify-content:start;overflow-x:auto;scroll-snap-type:x mandatory;margin:30px -20px 0;padding:0 20px 14px;-webkit-overflow-scrolling:touch}
+  .pantalla{scroll-snap-align:center}
+  .guia .pantallas{grid-template-columns:repeat(2,58vw)}
+  .stats{grid-template-columns:repeat(3,1fr)}
+  .dos{grid-template-columns:1fr}.dos .pantalla{max-width:300px;margin:0 auto}
+  .letrero .pastilla{display:none}
+}
+@media (max-width:420px){.letrero .marca span{display:none}.boton{width:100%}}
+</style>
+</head>
+<body>
+<header class="letrero">
+ <a class="marca" href="./"><img src="../assets/icono.png" alt=""><span>Pixel Restaurant</span></a>
+ <div class="pastilla"><i></i>Now serving · Open beta on TestFlight</div>
+ <nav class="idioma" aria-label="Idioma / Language"><a href="../" hreflang="es" lang="es">ES</a><a href="./" class="activo" aria-current="page" hreflang="en" lang="en">EN</a></nav>
+ <a class="get" href="https://testflight.apple.com/join/qAFP9WFC">Try it</a>
+</header>
+<div class="cinta" aria-hidden="true"><div class="corre"><span>Open beta on TestFlight</span><span>260 recipes</span><span>10 world cuisines</span><span>Three Pixel Guide stars</span><span>100 categories</span><span>Decorate piece by piece</span><span>Visit your friends</span><span>No ads · no accounts</span><span>English, Spanish and Portuguese</span><span>Coming soon to the App Store and Google Play</span><span>Open beta on TestFlight</span><span>260 recipes</span><span>10 world cuisines</span><span>Three Pixel Guide stars</span><span>100 categories</span><span>Decorate piece by piece</span><span>Visit your friends</span><span>No ads · no accounts</span><span>English, Spanish and Portuguese</span><span>Coming soon to the App Store and Google Play</span></div></div>
+
+<section class="heroe"><div class="dentro">
+ <div>
+  <span class="tag">Restaurant sim</span>
+  <h1>Your restaurant,<span>your way</span></h1>
+  <p>From a tiny neighborhood spot to a three-star destination. You name it, place every table, build the menu and look after your crew.</p>
+  <div class="ctas"><a class="boton primario" href="https://testflight.apple.com/join/qAFP9WFC">Try it free on TestFlight</a><a class="boton secundario" href="#servicio">Take a look inside</a></div>
+  <small>iPhone and iPad · Coming soon to the App Store and Google Play · No ads, no accounts</small>
+ </div>
+ <div class="tel"><video autoplay muted loop playsinline preload="metadata" poster="../assets/local_poster.jpg" aria-label="The restaurant at rush hour"><source src="../assets/local.mp4" type="video/mp4"></video></div>
+</div></section>
+
+<section class="secc" id="servicio">
+ <span class="etq aparece">Service</span><h2 class="aparece">Rush hour hits<span>and your crew delivers</span></h2><p class="sub aparece">Customers come in, order and wait. The chef cooks, the waiter serves, the busser clears and the dishwasher washes. Run out of an ingredient mid-rush and you'll feel it.</p>
+ <div class="pantallas"><div class="pantalla aparece"><img src="../assets/en/local.jpg" alt="The floor" loading="lazy" width="540" height="1170"><b>The floor</b><span>Watch it run itself</span></div><div class="pantalla aparece"><img src="../assets/en/menu.jpg" alt="The menu" loading="lazy" width="540" height="1170"><b>The menu</b><span>Twelve dishes, four courses</span></div><div class="pantalla aparece"><img src="../assets/en/almacen.jpg" alt="The pantry" loading="lazy" width="540" height="1170"><b>The pantry</b><span>Stock up, grow your own, never run dry</span></div></div>
+ <div class="stats aparece"><div><b>260</b><span>Recipes</span></div><div><b>10</b><span>Cuisines</span></div><div><b>100</b><span>Categories</span></div><div><b>3</b><span>Stars</span></div><div><b>3</b><span>Languages</span></div><div><b>0</b><span>Ads</span></div></div>
+</section>
+
+<div class="blanca"><section class="secc"><div class="dos">
+ <div><span class="etq aparece">Your place</span><h2 class="aparece">Decorate it<span>piece by piece</span></h2><p class="sub aparece">Tables, chairs, counters, stoves, floors and walls in ten styles. Expand the dining room, buy the lot next door and cut the ribbon every time it grows.</p><ul class="aparece"><li>Name, color and logo: the sign is yours</li><li>Hire chefs, waiters, dishwashers and bussers</li><li>Level up each dish and charge more for it</li><li>Visit your friends' restaurants with a code</li></ul></div>
+ <div class="pantalla aparece"><img src="../assets/en/tienda.jpg" alt="The shop" loading="lazy" width="540" height="1170"><b>The shop</b><span>Hundreds of pieces</span></div>
+</div></section></div>
+
+<div class="guia"><section class="secc">
+ <div class="estrellas aparece" aria-hidden="true">★★★</div>
+ <span class="etq aparece">The Pixel Guide</span><h2 class="aparece">Earn your<span>three stars</span></h2><p class="sub aparece">Serve fast, keep it clean and move up in category. Each star comes with its own scene… and a rival who doesn't want you to have it. Careful: the Guide takes them away, too.</p>
+ <div class="pantallas"><div class="pantalla aparece"><img src="../assets/en/estrella.jpg" alt="The first one" loading="lazy" width="540" height="1170"><b>The first one</b><span>Your sign shows it off</span></div><div class="pantalla aparece"><img src="../assets/en/rango.jpg" alt="Your crew" loading="lazy" width="540" height="1170"><b>Your crew</b><span>A photo for every new rank</span></div></div>
+</section></div>
+
+<section class="secc" style="padding-bottom:0"><span class="etq aparece">The menu</span><h2 class="aparece">260 recipes<span>from 10 cuisines</span></h2><p class="sub aparece">Mexican, American, Japanese, Chinese, Italian, Korean, Indian, French, Spanish and Peruvian. All drawn in pixel art.</p></section>
+<div class="carta" aria-hidden="true"><div class="fila"><div class="plato"><img class="pixel" src="../assets/platos/quesadilla.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/chilaquiles.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/birria.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/ceviche.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/carbonara.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/bibimbap.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/biryani.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/bourguignon.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/barco_sushi.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/cheeseburger.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/bao.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/calzone.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/churros_chocolate.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/flan.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/cheesecake.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/banana_split.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/tacos_pastor.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/lomo_saltado.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/pizza_margarita.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/tiramisu.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/quesadilla.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/chilaquiles.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/birria.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/ceviche.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/carbonara.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/bibimbap.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/biryani.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/bourguignon.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/barco_sushi.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/cheeseburger.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/bao.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/calzone.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/churros_chocolate.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/flan.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/cheesecake.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/banana_split.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/tacos_pastor.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/lomo_saltado.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/pizza_margarita.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/tiramisu.png" alt="" loading="lazy" width="64" height="64"></div></div><div class="fila b"><div class="plato"><img class="pixel" src="../assets/platos/tiramisu.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/pizza_margarita.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/lomo_saltado.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/tacos_pastor.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/banana_split.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/cheesecake.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/flan.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/churros_chocolate.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/calzone.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/bao.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/cheeseburger.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/barco_sushi.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/bourguignon.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/biryani.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/bibimbap.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/carbonara.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/ceviche.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/birria.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/chilaquiles.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/quesadilla.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/tiramisu.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/pizza_margarita.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/lomo_saltado.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/tacos_pastor.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/banana_split.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/cheesecake.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/flan.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/churros_chocolate.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/calzone.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/bao.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/cheeseburger.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/barco_sushi.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/bourguignon.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/biryani.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/bibimbap.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/carbonara.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/ceviche.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/birria.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/chilaquiles.png" alt="" loading="lazy" width="64" height="64"></div><div class="plato"><img class="pixel" src="../assets/platos/quesadilla.png" alt="" loading="lazy" width="64" height="64"></div></div></div>
+
+<section class="fin">
+ <img src="../assets/icono.png" alt="Pixel Restaurant" width="112" height="112">
+ <h2>Open your restaurant</h2><p>Free. No ads. No accounts or passwords.</p>
+ <a class="boton primario" style="background:var(--tinta);color:#fff;box-shadow:0 5px 0 #000,0 14px 30px #0b102055" href="https://testflight.apple.com/join/qAFP9WFC">Try it free on TestFlight</a>
+</section>
+
+<footer>
+ <nav><a href="../soporte">Support</a><a href="../privacy">Privacy</a><a href="https://gonzoas.github.io/gridiron-legacy-web/en/">Pixel Football</a></nav>
+ A game by Gonzalo Álvarez, maker of Pixel Football.
+</footer>
+<script>
+// Las secciones entran al llegar a ellas.
+(function(){var els=document.querySelectorAll('.aparece');
+ if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('visto')});return}
+ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visto');io.unobserve(e.target)}})},{threshold:.1});
+ els.forEach(function(e){io.observe(e)});})();
+// El video sólo corre cuando se ve.
+(function(){var v=document.querySelector('video');if(!v||!('IntersectionObserver' in window))return;
+ new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var p=v.play();if(p&&p.catch)p.catch(function(){})}else{v.pause()}})},{threshold:.2}).observe(v);})();
+</script>
+</body>
+</html>

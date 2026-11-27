@@ -6,7 +6,7 @@ title: Privacy policy · Pixel Restaurant
 
 # Privacy policy · Pixel Restaurant
 
-_Last updated: November 22, 2026._
+_Last updated: November 26, 2026._
 
 Pixel Restaurant is a restaurant game for iPhone and Android made by Gonzalo Álvarez. This page explains,
 briefly, what the game does with your data.
@@ -24,11 +24,18 @@ briefly, what the game does with your data.
 - **Backup on our server:** so you don't lose your restaurant if you change phones or delete the app,
   the game creates an **anonymous account** on its own (a random identifier, with no name or email) and
   stores a copy of your save. The server is hosted for us by Supabase (United States).
-- **What your friends see:** if you share your friend code, people who add it can see your restaurant's
-  name, logo and color and visit your place (without your coins). Only people you add, or who add you,
-  can see it.
+- **What other players see:** your restaurant's name, logo and color, your Pixel Guide points and
+  stars, your country (your phone's region, two letters) and your place, which they can visit without
+  seeing your coins. Your friends (people who add your code) see it and, once your restaurant has a name
+  and has served something, so does anyone looking at the Guide ranking.
+- **Reports and blocks:** if you report or block a restaurant, we store whom and why, so we can stop
+  showing it to you and review it. Names go through a profanity filter.
 
-If you want us to delete your backup, email us your friend code (shown in the game) and we will delete it.
+## Deleting your account
+
+In the game: **Settings → Account → "Delete my account and data"**. Your anonymous account and
+everything in it (save, friends, blocks) is deleted from the server and the phone right away. If you no
+longer have the game installed, email us your friend code and we will delete it.
 
 ## In-app purchases
 
@@ -46,4 +53,4 @@ If the game ever starts storing new data, this page will change first and say so
 
 ## Contact
 
-Privacy questions or to delete your backup: **gonzoas96@gmail.com**.
+Privacy questions: **gonzoas96@gmail.com**. [Support](soporte) · [The game](en/)

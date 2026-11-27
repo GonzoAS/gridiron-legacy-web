@@ -6,7 +6,7 @@ title: Política de privacidad · Pixel Restaurant
 
 # Política de privacidad · Pixel Restaurant
 
-_Última actualización: 22 de noviembre de 2026._
+_Última actualización: 26 de noviembre de 2026._
 
 Pixel Restaurant es un juego de restaurante para iPhone y Android hecho por Gonzalo Álvarez. Esta página
 explica, en corto, qué hace el juego con tus datos.
@@ -25,11 +25,18 @@ explica, en corto, qué hace el juego con tus datos.
 - **Respaldo en nuestro servidor:** para que no pierdas tu restaurante si cambias de teléfono o borras la
   app, el juego abre solo una **cuenta anónima** (un identificador al azar, sin nombre ni correo) y guarda
   una copia de tu partida. El servidor es de Supabase (Estados Unidos), que lo aloja por nosotros.
-- **Lo que ven tus amigos:** si compartes tu código de amigo, quienes lo agreguen pueden ver el nombre,
-  logo y color de tu restaurante y visitar tu local (sin tus monedas). Sólo lo ven quienes tú agregas o
-  te agregan.
+- **Lo que ven otros jugadores:** el nombre, el logo y el color de tu restaurante, tus puntos y estrellas
+  de la Guía Pixel, tu país (el de la región de tu teléfono, dos letras) y tu local, que pueden visitar
+  sin ver tus monedas. Lo ven tus amigos (quienes agregan tu código) y, cuando tu restaurante ya tiene
+  nombre y ha servido algo, quien mire el ranking de la Guía.
+- **Reportes y bloqueos:** si reportas o bloqueas un restaurante, guardamos a quién y el motivo, para
+  dejar de mostrártelo y poder revisarlo. Los nombres pasan por un filtro de groserías.
 
-Si quieres que borremos tu respaldo, escríbenos con tu código de amigo (está en el juego) y lo borramos.
+## Borrar tu cuenta
+
+Dentro del juego: **Configuración → Cuenta → «Borrar mi cuenta y mis datos»**. Se borra tu cuenta
+anónima y todo lo suyo (partida, amigos, bloqueos) del servidor y del teléfono, al momento. Si ya no
+tienes el juego instalado, escríbenos con tu código de amigo y lo borramos nosotros.
 
 ## Compras dentro de la app
 
@@ -47,4 +54,4 @@ Si el juego empieza a guardar algún dato nuevo, esta página cambiará antes y 
 
 ## Contacto
 
-Dudas sobre privacidad o para borrar tu respaldo: **gonzoas96@gmail.com**.
+Dudas sobre privacidad: **gonzoas96@gmail.com**. [Soporte](soporte) · [El juego](./)
